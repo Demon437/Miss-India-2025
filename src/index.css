@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables for Logo Colors */
+:root {
+  --old-gold: #d6ac45;
+  --old-gold-light: #e6c266;
+  --old-gold-dark: #b8942a;
+  --celtic: #1b3521;
+  --celtic-light: #2a4a2f;
+  --celtic-dark: #0f1f13;
+  --ecru-white: #f2f1da;
+  --ecru-white-light: #f7f6ef;
+  --ecru-white-dark: #e6e5d1;
+  --korma: #81490f;
+  --korma-light: #9a5a12;
+  --korma-dark: #6b3a0c;
+}
+
+/* Global Theme Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, var(--old-gold) 0%, var(--celtic) 50%, var(--old-gold) 100%);
+  min-height: 100vh;
+}
+
+/* Custom utility classes for theme */
+.bg-theme-gradient {
+  background: linear-gradient(135deg, var(--old-gold) 0%, var(--celtic) 50%, var(--old-gold) 100%);
+}
+
+.text-old-gold {
+  color: var(--old-gold);
+}
+
+.text-celtic {
+  color: var(--celtic);
+}
+
+.text-ecru-white {
+  color: var(--ecru-white);
+}
+
+.text-korma {
+  color: var(--korma);
+}
+
+.bg-old-gold {
+  background-color: var(--old-gold);
+}
+
+.bg-celtic {
+  background-color: var(--celtic);
+}
+
+.bg-ecru-white {
+  background-color: var(--ecru-white);
+}
+
+.bg-korma {
+  background-color: var(--korma);
+}
+
+/* Custom styles to ensure Tailwind is working */
+.test-tailwind {
+  @apply bg-red-500 text-white p-4 rounded-lg;
+}
+
+/* Force Tailwind classes to be included */
+.bg-black { background-color: #000000; }
+.text-white { color: #ffffff; }
+.min-h-screen { min-height: 100vh; }
+.fixed { position: fixed; }
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.z-50 { z-index: 50; }
