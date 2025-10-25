@@ -18,7 +18,7 @@ const About = () => {
     return (
         <div className="min-h-screen bg-[#1b3521]">
             {/* Form Section */}
-            <Form />
+
 
             {/* About Us Section */}
             <section className="py-16 bg-[#d6ac45] from-[#1b3521] to-[#2a4a2a] text-ecruWhite-500">

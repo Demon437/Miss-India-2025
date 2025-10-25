@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import HeroBanner from '../components/HeroBanner';
-import UpcomingEvents from '../components/UpcomingEvents';
 import About from './About';
 import Highlight from './Highlight';
 import GovernmentCultural from '../components/GovernmentCultural';
@@ -10,32 +9,62 @@ import Philosophy from '../components/Philosophy';
 import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
 import GotoForm from './GotoForm';
+import Form from '../components/Form';
+
 const Home = () => {
+  const [showMainContent, setShowMainContent] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
+  const handleLogoClick = () => {
+    // changed: only show the requested sections when logo clicked
+    setShowMainContent(true);
+    setShowForm(false);
+  };
+
+  const handleGoToFormClick = () => {
+    setShowForm(true);
+    setShowMainContent(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-ecruWhite-500 via-oldGold-200 to-ecruWhite-500 text-celtic-500">
-      <Header />
-      <HeroBanner />
-      <div id="about">
-        <About />
-      </div>
-      <div id="highlight">
-        <Highlight />
-      </div>
+      {/* Header will always be visible */}
+      <Header onLogoClick={handleLogoClick} />
 
-      {/* Additional Sections */}
-      <section id="services" className="py-16 bg-[#F5F5DC] w-full">
-        <div className="w-full">
-          <GovernmentCultural />
-          <CSREducational />
-          <Philosophy />
-          <Partnership />
-          <GotoForm />
+      {/* Initial view - only GotoForm */}
+      {!showMainContent && !showForm && (
+        <div className="mt-20">
+          <GotoForm onFormClick={handleGoToFormClick} />
         </div>
-      </section>
+      )}
 
-      <div id="contact">
-        <Contact />
-      </div>
+      {/* Form view */}
+      {showForm && (
+        <div className="mt-20">
+          <Form />
+        </div>
+      )}
+
+      {/* Main content view - changed: render only About, Highlight, Partnership, Philosophy */}
+      {showMainContent && (
+        <>
+          <div id="about" className="mt-20">
+            <About />
+          </div>
+
+          <div id="highlight" className="mt-12">
+            <Highlight />
+          </div>
+
+          <div id="philosophy" className="mt-12">
+            <Philosophy />
+          </div>
+
+          <div id="partnership" className="mt-12 mb-20">
+            <Partnership />
+          </div>
+        </>
+      )}
     </div>
   );
 };
