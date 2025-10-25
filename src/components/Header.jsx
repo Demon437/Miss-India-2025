@@ -51,7 +51,7 @@ const Header = ({ onLogoClick }) => {
             </button>
             <button
               onClick={() => scrollToSection('highlight')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10 "
             >
               Femina Miss India
             </button>

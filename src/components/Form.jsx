@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import qrImage from '../assets/Screenshot 2025-10-23 173612.png';
+import closeUpRef from '../assets/Close-Up.jpg';
+import midLengthRef from '../assets/Mid-length.jpg';
+import fullLengthRef from '../assets/Full-length.jpg';
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -40,10 +43,10 @@ const Form = () => {
     console.log('Form submitted:', formData);
     alert('Registration submitted successfully! We will contact you soon.');
   };
-
+  
   return (
     <section className="py-8 bg-[#1b3521] text-ecruWhite-500">
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="container mx-auto px-4 max-w-5xl">
         <div className="bg-white rounded-lg p-6 shadow-lg border border-oldGold-500/30">
           <h1 className="text-4xl font-bold text-center mb-6 text-[#d6ac45] font-display">
             FEMINA MISS INDIA MP-2025
@@ -307,63 +310,92 @@ const Form = () => {
                 <p className="text-xs text-blue-700">Rename files as: "Your Name Photo Type" (e.g., "Rashmi Jain Close Up")</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                    Close Up Photo <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    name="closeUpPhoto"
-                    onChange={handleInputChange}
-                    accept=".jpg,.jpeg,.png"
-                    required
-                    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Close Up */}
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Close Up Photo <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      name="closeUpPhoto"
+                      onChange={handleInputChange}
+                      accept=".jpg,.jpeg,.png"
+                      required
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                    />
+                  </div>
+                  <div className="w-36 text-center">
+                    <img src={closeUpRef} alt="Close Up Reference" className="w-28 h-28 object-cover rounded-lg shadow-sm mb-1" />
+                    <p className="text-xs text-celtic-500">Reference Image</p>
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                    Full Length Photo <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    name="fullLengthPhoto"
-                    onChange={handleInputChange}
-                    accept=".jpg,.jpeg,.png"
-                    required
-                    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                  />
+                {/* Full Length */}
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Full Length Photo <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      name="fullLengthPhoto"
+                      onChange={handleInputChange}
+                      accept=".jpg,.jpeg,.png"
+                      required
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                    />
+                  </div>
+                  <div className="w-36 text-center">
+                    <img src={fullLengthRef} alt="Full Length Reference" className="w-28 h-28 object-cover rounded-lg shadow-sm mb-1" />
+                    <p className="text-xs text-celtic-500">Reference Image</p>
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                    Mid Length Photo <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    name="midLengthPhoto"
-                    onChange={handleInputChange}
-                    accept=".jpg,.jpeg,.png"
-                    required
-                    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                  />
+                {/* Mid Length */}
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Mid Length Photo <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      name="midLengthPhoto"
+                      onChange={handleInputChange}
+                      accept=".jpg,.jpeg,.png"
+                      required
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                    />
+                  </div>
+                  <div className="w-36 text-center">
+                    <img src={midLengthRef} alt="Mid Length Reference" className="w-28 h-28 object-cover rounded-lg shadow-sm mb-1" />
+                    <p className="text-xs text-celtic-500">Reference Image</p>
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                    Natural Look Photo <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    name="naturalLookPhoto"
-                    onChange={handleInputChange}
-                    accept=".jpg,.jpeg,.png"
-                    required
-                    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                  />
+                {/* Natural Look */}
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Natural Look Photo <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      name="naturalLookPhoto"
+                      onChange={handleInputChange}
+                      accept=".jpg,.jpeg,.png"
+                      required
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                    />
+                  </div>
+                  <div className="w-36 text-center">
+                    <img src={closeUpRef} alt="Natural Look Reference" className="w-28 h-28 object-cover rounded-lg shadow-sm mb-1" />
+                    <p className="text-xs text-celtic-500">Reference Image</p>
+                  </div>
                 </div>
 
+                {/* Natural Beauty */}
                 <div>
                   <label className="block text-celtic-500 font-semibold mb-1 text-sm">
                     Natural Beauty Shot (No make-up)
@@ -452,8 +484,9 @@ const Form = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-                style={{ backgroundColor: '#d6ac45', color: '#1b3521' }}>
+                className="font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
+
+              >
                 Submit Registration
               </button>
             </div>
