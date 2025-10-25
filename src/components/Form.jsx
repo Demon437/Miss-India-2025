@@ -67,7 +67,7 @@ const Form = () => {
               <h2 className="text-xl font-bold text-oldGold-500 mb-3 border-b border-oldGold-500 pb-1">
                 Eligibility Criteria
               </h2>
-              <ul className="space-y-1 text-sm text-celtic-500">
+              <ul className="space-y-1 text-md text-celtic-500">
                 <li>• Age: 18 to 25 years</li>
                 <li>• Height: 5'3" & above</li>
                 <li>• Single/Unmarried</li>
