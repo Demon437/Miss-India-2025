@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Form from '../components/Form';
+import ShinyText from '../components/ShinyText'; // added import
 
 const About = () => {
     // Add scroll handler function
@@ -31,9 +32,12 @@ const About = () => {
                         >
                             Bright Stage
                         </h1>
-                        <p className="text-2xl font-bold italic text-oldGold-400">
-                            "Crafted Events, Classy Celebrations, Timeless Memories"
-                        </p>
+
+                        <ShinyText
+                            text={'"Crafted Events, Classy Celebrations, Timeless Memories"'}
+                            speed={3}
+                            className="text-2xl font-bold italic text-oldGold-400"
+                        />
                     </div>
 
                     {/* About Us Content */}
@@ -104,7 +108,7 @@ const About = () => {
                     <p className="text-dark-800 mb-4 text-center">
                         Corporate Excellence – <span className="font-semibold">Business with a Human Touch</span>
                     </p>
-                    <p className="text-gray-700 mb-6 font-bold">
+                    <p className="text-dark-700 mb-6 font-bold">
                         Conferences don’t have to be boring, and product launches <br /> don’t have to be predictable. We create corporate experiences <br /> that are polished yet personal, strategic yet memorable.                    </p>
 
                     <ul className="list-disc list-inside space-y-2 text-dark-700">
@@ -120,7 +124,7 @@ const About = () => {
                     <h2 className="text-2xl font-bold mb-4 text-center">
                         Talent & Entertainment – Where Creativity Takes Center Stage
                     </h2>
-                    <p className="text-gray-700 mb-6 font-bold">
+                    <p className="text-dark-700 mb-6 font-bold">
                         A stage is more than wood and lights — it’s a launchpad for talent. <br /> We craft arenas where performers shine, artists connect, and <br /> audiences can’t stop cheering.
                     </p>
 

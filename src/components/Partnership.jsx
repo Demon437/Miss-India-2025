@@ -4,7 +4,7 @@ const Partnership = () => {
   return (
     <div className="mb-8 p-8 bg-white rounded-xl shadow-lg border-2 border-[#d6ac45]/20 hover:border-[#d6ac45]/40 hover:shadow-xl transition-all duration-300 w-full group">
       <h3 className="text-3xl font-bold text-dark mb-8 text-center group-hover:text-[#d6ac45] transition-colors duration-300">Partnership Promise</h3>
-      
+
       <div className="grid md:grid-cols-2 gap-8">
         {/* Partnership Benefits */}
         <div className="text-left">
@@ -12,7 +12,7 @@ const Partnership = () => {
             <span className="text-3xl mr-3">🤝</span>
             Why Partner With Us
           </h4>
-          <ul className="space-y-3 text-lg text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+          <ul className="space-y-3 text-lg text-dark-700 group-hover:text-dark-800 transition-colors duration-300">
             <li className="flex items-center">
               <span className="text-2xl mr-3">✨</span>
               Brand Amplification & Visibility
@@ -38,7 +38,7 @@ const Partnership = () => {
             <span className="text-3xl mr-3">💬</span>
             Our Promise
           </h4>
-          <p className="text-xl text-gray-700 italic leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+          <p className="text-xl text-dark-700 italic leading-relaxed group-hover:text-dark-800 transition-colors duration-300">
             "Partnering with Bright Stage means your brand won't just be seen — it will be celebrated. Together, let's create events that amplify visibility, engage audiences, and leave a lasting brand impression."
           </p>
         </div>

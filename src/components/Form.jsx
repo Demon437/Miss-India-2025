@@ -43,7 +43,7 @@ const Form = () => {
     console.log('Form submitted:', formData);
     alert('Registration submitted successfully! We will contact you soon.');
   };
-  
+
   return (
     <section className="py-8 bg-[#1b3521] text-ecruWhite-500">
       <div className="container mx-auto px-4 max-w-5xl">
@@ -438,9 +438,9 @@ const Form = () => {
                 <div>
                   <h4 className="text-lg font-bold text-celtic-500 mb-3">Registration Fee: ₹999</h4>
                   <div className="bg-white p-4 rounded-lg border border-gray-300 text-center">
-                    <div className="w-32 h-32 mx-auto bg-gray-100 rounded-lg flex items-center justify-center mb-2">
+                    <div className="w-48 h-48 mx-auto bg-gray-100 rounded-lg flex items-center justify-center mb-2">
                       <a href={qrImage} target="_blank" rel="noopener noreferrer">
-                        <img src={qrImage} alt="Payment QR" className="w-32 h-32 object-contain rounded-lg" />
+                        <img src={qrImage} alt="Payment QR" className="w-48 h-48 object-contain rounded-lg" />
                       </a>
                     </div>
                     <p className="text-sm text-gray-600">Scan QR code to make payment</p>

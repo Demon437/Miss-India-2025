@@ -2,9 +2,9 @@ import React from 'react';
 
 const Highlight = () => {
   return (
-    <section className="py-16 bg-[#f2f1da]">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6 text-[#81490f] font-display">
+    <section className="bg-[#f2f1da]">
+      <div className="max-w-5xl mx-auto px-6 text-center py-12">
+        <h2 className="text-4xl font-bold mb-6 text-[#81490f] font-display ">
           Femina Miss India – Madhya Pradesh
         </h2>
         <p className="text-xl text-[#81490f] leading-relaxed mb-6 text-left">
@@ -30,10 +30,10 @@ const Highlight = () => {
 
 
 
-      <section className="py-16 bg-[#F5F5DC] w-full" id="services">
+      <section className="mt-12 bg-[#F5F5DC] w-full" id="services">
         <div className="w-full bg-white p-8 rounded-lg shadow-md border border-[#d6ac45]/30">
           {/* Tagline */}
-          <p className="text-[#1b3521] italic mb-6 text-xl text-center font-medium">
+          <p className="text-[#1b3521] italic mb-6 text-xl text-center font-medium text-dark">
             From spotlight moments to standing ovations — we create the magic between the stage and the soul.
           </p>
 
@@ -43,13 +43,13 @@ const Highlight = () => {
           </h2>
 
           {/* Main Description */}
-          <p className="text-gray-700 leading-relaxed text-left mb-8 text-xl">
+          <p className="text-dark-700 leading-relaxed text-left mb-8 text-xl">
             Love stories deserve stages as grand as the emotions behind them. Whether it's a destination wedding by the sea or a sparkling anniversary gala, we make celebrations unforgettable.
           </p>
 
           {/* Services List */}
           <div className="text-left mb-8">
-            <ul className="list-disc list-inside text-gray-700 space-y-3 mb-6 text-lg">
+            <ul className="list-disc list-inside text-dark-700 space-y-3 mb-6 text-lg">
               <li>Destination Weddings & Royal Celebrations</li>
               <li>Designer Décor & Show-Stopping Bridal Entries</li>
               <li>Engagements, Anniversaries & Family Galas</li>
@@ -58,10 +58,10 @@ const Highlight = () => {
             </ul>
 
             {/* Closing Messages */}
-            <p className="italic text-gray-600 mb-4 text-lg">
+            <p className="italic text-dark-600 mb-4 text-lg">
               Because your love story deserves a celebration as timeless as your bond.
             </p>
-            <p className="text-gray-700 mb-6 text-lg">
+            <p className="text-dark-700 mb-6 text-lg">
               Every celebration becomes a timeless memory — designed to be retold for generations.
             </p>
           </div>
