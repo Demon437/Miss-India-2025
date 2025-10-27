@@ -176,15 +176,18 @@ const Form = () => {
                   {/* Name Fields Row */}
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      First Name <span className="text-red-500">*</span>
+                      Your Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
+                      placeholder='First Name*'
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300
+                      placeholder-gray-400
+                      text-sm rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
 
 
@@ -192,27 +195,30 @@ const Form = () => {
 
 
                   <div>
-                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">Middle Name</label>
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6"></label>
                     <input
                       type="text"
+                      placeholder='Middle Name*'
                       name="middleName"
                       value={formData.middleName}
                       onChange={handleInputChange}
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 placeholder-gray-400 rounded text-celtic-500 focus:border-oldGold-500 text-sm focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Last Name <span className="text-red-500">*</span>
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6">
+                       <span className="text-red-500"></span>
                     </label>
                     <input
                       type="text"
                       name="lastName"
+                      placeholder='Last Name*'
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 
+                      placeholder-gray-400 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm placeholder-gray-400"
                     />
                   </div>
 
@@ -226,7 +232,7 @@ const Form = () => {
                     <div className="flex gap-2">
                       <select
                         name="birthDate"
-                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                        className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 text-sm focus:border-oldGold-500 focus:outline-none"
                       >
                         <option value="">Date</option>
                         {[...Array(31)].map((_, i) => (
@@ -235,7 +241,7 @@ const Form = () => {
                       </select>
                       <select
                         name="birthMonth"
-                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                        className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Month</option>
                         {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((month, i) => (
@@ -244,7 +250,7 @@ const Form = () => {
                       </select>
                       <select
                         name="birthYear"
-                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                        className="w-24 p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Year</option>
                         {[...Array(8)].map((_, i) => {
@@ -267,7 +273,7 @@ const Form = () => {
                       onChange={handleInputChange}
                       required
                       placeholder="Age"
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                     />
                   </div>
 
@@ -279,7 +285,7 @@ const Form = () => {
                     <div className="flex gap-2">
                       <select
                         name="heightFeet"
-                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Feet</option>
                         {[5, 6].map(feet => (
@@ -288,7 +294,7 @@ const Form = () => {
                       </select>
                       <select
                         name="heightInches"
-                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                        className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Inches</option>
                         {[...Array(12)].map((_, i) => (
@@ -302,26 +308,27 @@ const Form = () => {
                   {/* Contact Details Row */}
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Mobile No. <span className="text-red-500">*</span>
+                      Contact Details. <span className="text-red-500">*</span>
                     </label>
-                    <input
+                    <input placeholder='Mobile No.'
                       type="tel"
-                      name="mobile"
+                      name="Mobile"
                       value={formData.mobile}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300  rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm placeholder-gray-400"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">Alternate Mobile</label>
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6"></label>
                     <input
                       type="tel"
+                      placeholder='Mobile No.(Alternate)'
                       name="alternateMobile"
                       value={formData.alternateMobile}
                       onChange={handleInputChange}
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 placeholder-gray-400 text-sm rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
                   </div>
 
@@ -330,12 +337,13 @@ const Form = () => {
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
+                    placeholder='Email'
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 placeholder-gray-400 text-sm rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
                   </div>
                   <div className="mb-6">
@@ -405,7 +413,7 @@ const Form = () => {
                       value={formData.birthState || ''}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm"
                     >
                       <option value="">Birth State / UT</option>
                       <option value="Madhya Pradesh">Madhya Pradesh</option>
@@ -441,7 +449,7 @@ const Form = () => {
                       value={formData.currentState}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm" 
                     >
                       <option value="">Current State / UT</option>
                       <option value="Madhya Pradesh">Madhya Pradesh</option>
@@ -477,7 +485,7 @@ const Form = () => {
                       value={formData.nativeState}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300  rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm "
                     >
                       <option value="">Native State / UT</option>
                       <option value="Madhya Pradesh">Madhya Pradesh</option>
