@@ -9,15 +9,10 @@ const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
     <div className="mb-6">
       <label className="flex items-center cursor-pointer">
-        <input
-          type="radio"
-          name="accordion"
-          checked={isOpen}
-          onChange={onToggle}
-          className="hidden"
-        />
+        {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
           className={`accordion-header w-full flex items-center justify-between py-4 px-6 focus:outline-none ${isOpen ? 'is-sticky' : ''}`}
+          onClick={() => onToggle(index)} // Add onClick here
         >
           <div className="flex items-center gap-4">
             <div className="accordion-number w-10 h-10 flex items-center justify-center text-gray-700 font-semibold">
@@ -86,8 +81,8 @@ const Form = () => {
   });
 
   const toggleSection = (i) => {
-    // open/close without forcing page scroll
-    setOpenSection(prev => (prev === i ? null : i));
+    // Toggle the section open/close
+    setOpenSection(prev => (prev === i ? null : i)); // This should work correctly
   };
 
   const handleInputChange = (e) => {
