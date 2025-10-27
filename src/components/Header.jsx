@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from '../assets/WhatsApp Image 2025-10-15 at 14.51.55_3ae3ffed.jpg'
 
 const Header = ({ onLogoClick }) => {
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Account for fixed header height
+      const headerHeight = 80;
       const elementPosition = element.offsetTop - headerHeight;
-
       window.scrollTo({
         top: elementPosition,
         behavior: 'smooth'
       });
     }
+    setIsMoreOpen(false);
   };
 
   return (
@@ -25,7 +27,6 @@ const Header = ({ onLogoClick }) => {
             <button
               type="button"
               onClick={(e) => {
-                // prevent default if inside anchor behavior
                 if (e && e.preventDefault) e.preventDefault();
                 if (typeof onLogoClick === 'function') onLogoClick();
               }}
@@ -37,23 +38,22 @@ const Header = ({ onLogoClick }) => {
                 alt="BRIGHT STAGE Logo"
                 className="h-16 w-auto object-contain cursor-pointer"
               />
-
             </button>
           </div>
 
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection('about')}
+              onClick={() => scrollToSection('home')}
               className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
             >
-              About
+              Home
             </button>
             <button
-              onClick={() => scrollToSection('highlight')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10 "
+              onClick={() => scrollToSection('gallery')}
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
             >
-              Femina Miss India
+              Gallery
             </button>
             <button
               onClick={() => scrollToSection('services')}
@@ -62,13 +62,57 @@ const Header = ({ onLogoClick }) => {
               Services
             </button>
             <button
+              onClick={() => scrollToSection('about')}
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
+            >
+              About
+            </button>
+            <button
               onClick={() => scrollToSection('contact')}
               className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
             >
               Contact
             </button>
-          </nav>
 
+            {/* More Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsMoreOpen(!isMoreOpen)}
+                className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10 flex items-center"
+              >
+                More ▼
+              </button>
+
+              {isMoreOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-oldGold-500/20">
+                  <button
+                    onClick={() => scrollToSection('clients')}
+                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
+                  >
+                    Clients
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('team')}
+                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
+                  >
+                    Team
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('testimonials')}
+                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
+                  >
+                    Testimonials
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('commitment')}
+                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
+                  >
+                    Commitment
+                  </button>
+                </div>
+              )}
+            </div>
+          </nav>
         </div>
       </div>
     </header>

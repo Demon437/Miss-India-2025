@@ -1,0 +1,89 @@
+/* ...existing code... */
+
+.clients-section {
+  padding: 3rem 1rem;
+  background: #fff;
+  color: #111;
+}
+
+.clients-title {
+  text-align: center;
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.clients-sub {
+  text-align: center;
+  margin: 0 0 1.25rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.clients-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  align-items: center;
+  max-width: 1100px;
+}
+
+.client-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: transform 180ms ease;
+  outline: none;
+  text-decoration: none;
+}
+
+/* Grayscale by default, color on hover/focus */
+.client-logo {
+  filter: grayscale(100%) contrast(0.95) brightness(0.95);
+  transition: filter 240ms ease, transform 180ms ease;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none; /* image shouldn't capture pointer when wrapped by link */
+}
+
+/* Hover / focus effect on container for better clickable/focusable area */
+.client-item:hover .client-logo,
+.client-link:focus .client-logo,
+.client-link:active .client-logo {
+  filter: none;
+  transform: scale(1.03);
+}
+
+/* Keyboard accessible focus ring */
+.client-link:focus {
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.15);
+  border-radius: 6px;
+}
+
+/* Responsive tweaks */
+@media (min-width: 900px) {
+  .clients-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .client-logo {
+    max-height: 64px;
+    width: auto;
+  }
+}
+
+/* ...existing code... */

@@ -1,78 +1,131 @@
-import React from 'react';
+import React from "react";
+import destWedding from "../assets/Destination Weddings 3.jpg";
+import corp from "../assets/BS Corporate 2.jpg";
+import talent1 from "../assets/BS Talent 1.png";
+import talent2 from "../assets/BS Talent 2.jpg";
 
-const Highlight = () => {
+const cards = [
+  {
+    title: "Destination Weddings",
+    img: destWedding,
+    alt: "Destination wedding",
+    desc: "Bespoke celebrations at dream locations — every moment crafted to perfection.",
+  },
+  {
+    title: "Corporate Events",
+    img: corp,
+    alt: "Corporate event",
+    desc: "Professional, polished events that reflect your brand and objectives.",
+  },
+  {
+    title: "Concerts & Shows",
+    img: talent1,
+    alt: "Concert or show",
+    desc: "High-energy productions with seamless production and crowd experiences.",
+  },
+  {
+    title: "MICE Events",
+    img: talent2,
+    alt: "MICE event",
+    desc: "Meetings, incentives, conferences and exhibitions with meticulous planning.",
+  },
+];
+
+export default function Highlight() {
   return (
-    <section className="bg-[#f2f1da]">
-      <div className="max-w-5xl mx-auto px-6 text-center py-12">
-        <h2 className="text-4xl font-bold mb-6 text-[#81490f] font-display ">
-          Femina Miss India – Madhya Pradesh
+    <section
+      aria-labelledby="highlight-heading"
+      style={{
+        padding: "3rem 1rem",
+        background: "#fff",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <h2
+          id="highlight-heading"
+          style={{
+            fontSize: "1.5rem",
+            margin: "0 0 1rem 0",
+            textAlign: "center",
+            color: "#111",
+            fontWeight: "600",
+          }}
+        >
+          Our Expertise
         </h2>
-        <p className="text-xl text-[#81490f] leading-relaxed mb-6 text-left">
-          Bright Stage is immensely proud to be the official licensee of Femina Miss India – Madhya Pradesh. Bringing this prestigious national platform to our state is not just an honor; it is a celebration of talent, ambition, and the limitless potential of young women. Femina Miss India has long been a stage where dreams take flight, confidence shines bright, and extraordinary journeys begin — values that perfectly resonate with the spirit of Bright Stage.
-        </p>
-        <p className="text-2xl italic text-[#81490f] mb-6 font-semibold text-left">
-          "A stage is not just a place: it is where brilliance meets opportunity."
-        </p>
-        <p className="text-xl text-[#81490f] leading-relaxed mb-8 text-left">
-          We are thrilled to open the doors for young women aged 15 to 25, inviting them to step into the spotlight, showcase their talent, express their individuality, and embrace the journey of transformation. This is your moment to shine, inspire, and leave a legacy that echoes far beyond the stage.
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#444",
+            margin: "0 0 2rem 0",
+            maxWidth: 850,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          We craft memorable experiences across a variety of event types — below are a few areas we
+          specialise in.
         </p>
 
-        <div className="mt-8 bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-[#81490f]/30 inline-block text-left max-w-4xl">
-          <h3 className="text-2xl font-bold mb-4 text-[#81490f] flex items-center">
-            <span className="text-3xl mr-3">🌟</span>
-            Open Invitation
-          </h3>
-          <p className="text-lg text-[#81490f] leading-relaxed">
-            To every ambitious, confident, and passionate girl in Madhya Pradesh — the stage awaits. Join Femina Miss India – Madhya Pradesh and embark on a journey where beauty meets purpose, elegance meets empowerment, and dreams turn into lasting legacies
-          </p>
+        <div
+          role="list"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "1rem",
+            alignItems: "stretch",
+            gridAutoRows: "1fr", // <-- ensure each grid cell / row gets equal height
+          }}
+        >
+          {cards.map((c) => (
+            <article
+              key={c.title}
+              role="listitem"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                gap: "0.75rem",
+                padding: "1.25rem",
+                borderRadius: 12,
+                background: "#f8f8f8",
+                boxShadow: "0 4px 14px rgba(15,15,15,0.06)",
+                transition: "transform 150ms ease, box-shadow 150ms ease",
+                cursor: "default",
+                height: "100%", // <-- fill the grid row so all cards match height
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow = "0 10px 30px rgba(15,15,15,0.12)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 4px 14px rgba(15,15,15,0.06)";
+              }}
+            >
+              <img
+                src={c.img}
+                alt={c.alt}
+                // fixed rendered size so all cards show same image height
+                style={{
+                  width: 200,           // enforce consistent width (px)
+                  height: 180,          // enforce consistent height (px)
+                  borderRadius: 8,
+                  objectFit: "cover",   // crop to fit the frame
+                  flex: "0 0 auto",
+                  display: "block",
+                  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+                }}
+              />
+
+              <h3 style={{ margin: "0.4rem 0 0 0", fontSize: "1.05rem", color: "#111" }}>{c.title}</h3>
+              <p style={{ margin: "0.4rem 0 0 0", color: "#555", fontSize: ".95rem" }}>{c.desc}</p>
+            </article>
+          ))}
         </div>
       </div>
-
-
-
-      <section className="mt-12 bg-[#F5F5DC] w-full" id="services">
-        <div className="w-full bg-white p-8 rounded-lg shadow-md border border-[#d6ac45]/30">
-          {/* Tagline */}
-          <p className="text-[#1b3521] italic mb-6 text-xl text-center font-medium text-dark">
-            From spotlight moments to standing ovations — we create the magic between the stage and the soul.
-          </p>
-
-          {/* Main Heading */}
-          <h2 className="text-3xl font-bold text-center mb-6 text-dark">
-            Weddings & Celebrations – Turning "I Do" into "Wow"
-          </h2>
-
-          {/* Main Description */}
-          <p className="text-dark-700 leading-relaxed text-left mb-8 text-xl">
-            Love stories deserve stages as grand as the emotions behind them. Whether it's a destination wedding by the sea or a sparkling anniversary gala, we make celebrations unforgettable.
-          </p>
-
-          {/* Services List */}
-          <div className="text-left mb-8">
-            <ul className="list-disc list-inside text-dark-700 space-y-3 mb-6 text-lg">
-              <li>Destination Weddings & Royal Celebrations</li>
-              <li>Designer Décor & Show-Stopping Bridal Entries</li>
-              <li>Engagements, Anniversaries & Family Galas</li>
-              <li>Celebrity Acts & Full Wedding Planning</li>
-              <li>& more</li>
-            </ul>
-
-            {/* Closing Messages */}
-            <p className="italic text-dark-600 mb-4 text-lg">
-              Because your love story deserves a celebration as timeless as your bond.
-            </p>
-            <p className="text-dark-700 mb-6 text-lg">
-              Every celebration becomes a timeless memory — designed to be retold for generations.
-            </p>
-          </div>
-        </div>
-      </section>
-
     </section>
-
-
-
   );
-};
-
-export default Highlight;
+}

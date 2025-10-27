@@ -11,6 +11,13 @@ import Contact from '../components/Contact';
 import GotoForm from './GotoForm';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
+import Hero from '../components/Hero';
+import Gallery from './Gallery';
+import ClientsSection from '../components/ClientsSection';
+import TeamSection from '../components/TeamSection';
+import Testimonials from '../components/Testimonials';
+
+
 const Home = () => {
   const [showMainContent, setShowMainContent] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -48,30 +55,35 @@ const Home = () => {
       {/* Main content view - changed: render only About, Highlight, Partnership, Philosophy */}
       {showMainContent && (
         <>
-          {/* <div id="about" className="mt-10">
-            <About />
-          </div> */}
+          <div id="about" className="mt-10">
+            < Hero />
+          </div>
 
-          {/* <div id="highlight" >
+          <div id="highlight" >
             <Highlight />
           </div>
 
+          <div id="about" className="mt-10">
+            < Gallery />
+          </div>
+
+
           <div id="philosophy" className="mt-12">
-            <Philosophy />
+            <ClientsSection />
           </div>
 
           <div id="partnership" className="mt-12">
-            <Partnership />
+            <TeamSection />
           </div>
 
           <div id='contact' className="mt-12">
-            <Contact />
-          </div> */}
+            <Testimonials />
+          </div>
 
-{/* 
+
           <div id='contact' className="mt-12">
             <Footer />
-          </div> */}
+          </div>
         </>
       )}
     </div>
