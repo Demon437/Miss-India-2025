@@ -380,8 +380,7 @@ const Form = () => {
                       <option value="Other">Other</option>
                     </select>
 
-                    <div className="mt-3">
-                      <label className="block text-sm text-celtic-500 mb-1">In order of preference of your audition state / UT*</label>
+                    <div className="mt-3 flex items-center gap-4">
                       <select
                         name="birthStatePreference"
                         value={formData.birthStatePreference || ''}
@@ -393,8 +392,9 @@ const Form = () => {
                         <option value="2">2</option>
                         <option value="3">3</option>
                       </select>
-                      <p className="text-red-500 text-sm mt-1 hidden">Please select birth state</p>
+                      <span className="text-sm text-celtic-500">In order of preference of your audition state / UT*</span>
                     </div>
+                    <p className="text-red-500 text-sm mt-1 hidden">Please select birth state</p>
                   </div>
 
                   {/* Current State / UT */}
@@ -416,8 +416,7 @@ const Form = () => {
                       <option value="Other">Other</option>
                     </select>
 
-                    <div className="mt-3">
-                      <label className="block text-sm text-celtic-500 mb-1">In order of preference of your audition state / UT*</label>
+                    <div className="mt-3 flex items-center gap-4">
                       <select
                         name="currentStatePreference"
                         value={formData.currentStatePreference || ''}
@@ -429,8 +428,9 @@ const Form = () => {
                         <option value="2">2</option>
                         <option value="3">3</option>
                       </select>
-                      <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
+                      <span className="text-sm text-celtic-500">In order of preference of your audition state / UT*</span>
                     </div>
+                    <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
                   </div>
 
                   {/* Native State (Parents Birth State) / UT */}
@@ -452,8 +452,7 @@ const Form = () => {
                       <option value="Other">Other</option>
                     </select>
 
-                    <div className="mt-3">
-                      <label className="block text-sm text-celtic-500 mb-1">In order of preference of your audition state / UT*</label>
+                    <div className="mt-3 flex items-center gap-4">
                       <select
                         name="nativeStatePreference"
                         value={formData.nativeStatePreference || ''}
@@ -465,8 +464,9 @@ const Form = () => {
                         <option value="2">2</option>
                         <option value="3">3</option>
                       </select>
-                      <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
+                      <span className="text-sm text-celtic-500">In order of preference of your audition state / UT*</span>
                     </div>
+                    <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
                   </div>
                 </div>
               </AccordionSection>
