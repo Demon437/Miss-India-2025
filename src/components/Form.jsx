@@ -54,7 +54,19 @@ const nationalityOptions = [
 ];
 
 const Form = () => {
-  const [openSection, setOpenSection] = useState(null); // 1..4
+  // allow multiple open sections
+  const [openSections, setOpenSections] = useState([]); // array of open indexes
+
+  // toggle a section on/off without closing others
+  const toggleSection = (i) => {
+    setOpenSections(prev => prev.includes(i) ? prev.filter(x => x !== i) : [...prev, i]);
+  };
+
+  // continue should open the next section while keeping current opens
+  const handleContinue = (nextSection) => {
+    setOpenSections(prev => prev.includes(nextSection) ? prev : [...prev, nextSection]);
+  };
+
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
@@ -79,11 +91,6 @@ const Form = () => {
     paymentScreenshot: null,
     declaration: false
   });
-
-  const toggleSection = (i) => {
-    // Toggle the section open/close
-    setOpenSection(prev => (prev === i ? null : i)); // This should work correctly
-  };
 
   const handleInputChange = (e) => {
     const { name, value, files, type, checked } = e.target;
@@ -111,9 +118,7 @@ const Form = () => {
             FEMINA MISS INDIA MP-2025
           </h1>
 
-          <p className="text-left text-celtic-500 mb-4 text-lg leading-relaxed font-bold">
-            Welcome to the official registration for Femina Miss India Madhya Pradesh 2025, presented by Bright Stage.
-          </p>
+
 
           <form onSubmit={handleSubmit} className="space-y-6">
 
@@ -121,19 +126,40 @@ const Form = () => {
               <AccordionSection
                 index={1}
                 title="Eligibility Criteria"
-                isOpen={openSection === 1}
+                isOpen={openSections.includes(1)}
                 onToggle={() => toggleSection(1)}
               >
                 <ul className="space-y-3 text-celtic-500">
-                  <li className="flex items-start gap-3"><span className="mt-1 text-sm">▸</span> Age: 18 to 25 years (25 as of December 31, 2025).</li>
-                  <li className="flex items-start gap-3"><span className="mt-1 text-sm">▸</span> Height: 5'3" & above (without heels).</li>
-                  <li className="flex items-start gap-3"><span className="mt-1 text-sm">▸</span> Relationship Status: Single, Not-Engaged, Unmarried, & Never been Married.</li>
-                  <li className="flex items-start gap-3"><span className="mt-1 text-sm">▸</span> Nationality: Indian passport holder.</li>
-                  <li className="flex items-start gap-3"><span className="mt-1 text-sm">▸</span> OCI cardholder can apply only for 2nd runner-up title.</li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 text-sm">▸</span>
+                    <span className="text-base text-gray-600">Age: 18 to 25 years (25 as of December 31, 2025).</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 text-sm">▸</span>
+                    <span className="text-base text-gray-600">Height: 5'3" & above (without heels).</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 text-sm">▸</span>
+                    <span className="text-base text-gray-600">Relationship Status: Single, Not-Engaged, Unmarried, & Never been Married.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 text-sm">▸</span>
+                    <span className="text-base text-gray-600">Nationality: Indian passport holder.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 text-sm">▸</span>
+                    <span className="text-base text-gray-600">OCI cardholder can apply only for 2nd runner-up title.</span>
+                  </li>
                 </ul>
 
                 <div className="text-right mt-4">
-                  <button type="button" onClick={() => toggleSection(2)} className="text-pink-600 font-semibold">Continue &gt;</button>
+                  <button
+                    type="button"
+                    onClick={() => handleContinue(2)}
+                    className="text-pink-600 font-semibold"
+                  >
+                    Continue &gt;
+                  </button>
                 </div>
               </AccordionSection>
             </div>
@@ -142,7 +168,7 @@ const Form = () => {
               <AccordionSection
                 index={2}
                 title="Personal Credentials"
-                isOpen={openSection === 2}
+                isOpen={openSections.includes(2)}
                 onToggle={() => toggleSection(2)}
               >
                 {/* Update the grid layout in Personal Credentials section */}
@@ -160,7 +186,10 @@ const Form = () => {
                       required
                       className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
+
+
                   </div>
+
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">Middle Name</label>
@@ -339,6 +368,16 @@ const Form = () => {
                     />
                   </div>
                 </div>
+
+                <div className="text-right mt-4">
+                  <button
+                    type="button"
+                    onClick={() => handleContinue(3)}
+                    className="text-pink-600 font-semibold"
+                  >
+                    Continue &gt;
+                  </button>
+                </div>
               </AccordionSection>
             </div>
 
@@ -346,7 +385,7 @@ const Form = () => {
               <AccordionSection
                 index={3}
                 title="Other Details"
-                isOpen={openSection === 3}
+                isOpen={openSections.includes(3)}
                 onToggle={() => toggleSection(3)}
               >
                 {/* Note above the columns (moved as requested) */}
@@ -464,14 +503,24 @@ const Form = () => {
                     <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
                   </div>
                 </div>
+
+                <div className="text-right mt-4">
+                  <button
+                    type="button"
+                    onClick={() => handleContinue(4)}
+                    className="text-pink-600 font-semibold"
+                  >
+                    Continue &gt;
+                  </button>
+                </div>
               </AccordionSection>
-            </div>
+            </div>  
 
             <div id="section-4">
               <AccordionSection
                 index={4}
                 title="Upload Photos"
-                isOpen={openSection === 4}
+                isOpen={openSections.includes(4)}
                 onToggle={() => toggleSection(4)}
               >
                 <div className="bg-blue-50 p-3 rounded mb-4">

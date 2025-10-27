@@ -8,7 +8,7 @@ const GotoForm = ({ onFormClick }) => {
                 <div className="absolute top-33 right-6">
                     <button
                         onClick={onFormClick}
-                        className="bg-[#e91e63] hover:bg-[#d21856] text-white font-semibold text-[15px] rounded-full px-6 py-3 transition-all shadow-md"
+                        className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form
                     </button>
@@ -24,52 +24,36 @@ const GotoForm = ({ onFormClick }) => {
                 </div>
 
                 {/* Title */}
-                <h2 className="text-[22px] font-semibold text-gray-800 mb-6">
+                <h2 className="text-[22px] font-semibold text-yellow-600 mb-6">
                     Steps to apply
                 </h2>
 
                 {/* Intro */}
-                <p className="text-[#e91e63] font-semibold mb-1">Dear Aspirants,</p>
-                <p className="text-[#e91e63] font-semibold mb-5">
+                <p className="text-yellow-600 font-semibold mb-1">Dear Aspirants,</p>
+                <p className="text-yellow-600 font-semibold mb-5">
                     Please read the process carefully before filling out the form:
                 </p>
 
                 {/* Steps */}
-                <div className="space-y-5 text-[15px] text-gray-700">
-                    <div>
-                        <span className="text-[#e91e63] font-semibold">Step 1: </span>
-                        Keep 4 pictures ready: close-up, mid-length, full length & no
-                        make-up.
-                        <hr className="mt-2 border-gray-200" />
-                    </div>
-                    <div>
-                        <span className="text-[#e91e63] font-semibold">Step 2: </span>
-                        Sign In with your email ID / Phone number.
-                        <hr className="mt-2 border-gray-200" />
-                    </div>
-                    <div>
-                        <span className="text-[#e91e63] font-semibold">Step 3: </span>
-                        Fill in all your credentials, your Instagram handle link & your
-                        physical attributes along with your contact details. All fields are
-                        mandatory.
-                        <hr className="mt-2 border-gray-200" />
-                    </div>
-                    <div>
-                        <span className="text-[#e91e63] font-semibold">Step 4: </span>
-                        Upload your pictures as mentioned in the first step.
-                        <hr className="mt-2 border-gray-200" />
-                    </div>
-                    <div>
-                        <span className="text-[#e91e63] font-semibold">Step 5: </span>
-                        Once all the fields are completed, click on accept T&Cs and submit
-                        the form.
-                        <hr className="mt-2 border-gray-200" />
-                    </div>
-                    <div>
-                        <span className="text-[#e91e63] font-semibold">Step 6: </span>
-                        You will receive an automated email upon successful submission of
-                        the form.
-                    </div>
+                <div className="space-y-6 text-[15px] text-dark">
+                    {[
+                        "Keep 4 pictures ready: close-up, mid-length, full length & no make-up.",
+                        "Sign In with your email ID / Phone number.",
+                        "Fill in all your credentials, your Instagram handle link & your physical attributes along with your contact details. All fields are mandatory.",
+                        "Upload your pictures as mentioned in the first step.",
+                        "Once all the fields are completed, click on accept T&Cs and submit the form.",
+                        "You will receive an automated email upon successful submission of the form.",
+                    ].map((text, idx) => (
+                        <div key={idx} className="grid grid-cols-[auto_1fr] gap-x-6 items-start">
+                            <div className="text-yellow-600 font-semibold pr-2">
+                                Step {idx + 1}:
+                            </div>
+                            <div>
+                                <div>{text}</div>
+                                <hr className={idx === 5 ? "hidden" : "mt-3 border-gray-200"} />
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
                 {/* Note */}
@@ -89,26 +73,26 @@ const GotoForm = ({ onFormClick }) => {
                             +91 9619937295 / +91 7039464909
                         </span>{" "}
                         or kindly write to us on{" "}
-                        <span className="text-[#e91e63]">
+                        <span className="text-dark">
                             missindiaorg@timesgroup.com
                         </span>
                     </p>
                 </div>
-
+                {/* Thank You */}
+                <div className="text-left text-gray-700 text-[15px] mt-10 font-normal ">
+                    Thank You!
+                </div>
                 {/* Bottom Button */}
                 <div className="flex justify-end mt-10">
                     <button
                         onClick={onFormClick}
-                        className="bg-[#e91e63] hover:bg-[#d21856] text-white font-semibold text-[15px] rounded-full px-6 py-3 transition-all shadow-md"
+                        className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form
                     </button>
                 </div>
 
-                {/* Thank You */}
-                <div className="text-center text-gray-700 text-[15px] mt-6 font-normal">
-                    Thank You!
-                </div>
+
             </div>
         </div>
     );
