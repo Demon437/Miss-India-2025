@@ -53,7 +53,7 @@ const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
 };
 
 const nationalityOptions = [
-  'Indian',
+  'Indian Passport',
   'OCI',
   // Add more options as needed
 ];
@@ -314,24 +314,24 @@ const Form = () => {
                       className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
                   </div>
-
                   <div className="mb-6">
                     <label className="block text-gray-700 font-semibold mb-2">Nationality</label>
-                    {nationalityOptions.map((option, index) => (
-                      <label key={index} className="flex items-center mb-2 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="nationality"
-                          value={option}
-                          checked={formData.nationality === option}
-                          onChange={handleNationalityChange}
-                          className="mr-2"
-                        />
-                        {option}
-                      </label>
-                    ))}
+                    <div className="flex flex-wrap items-center gap-6">
+                      {nationalityOptions.map((option, index) => (
+                        <label key={index} className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="nationality"
+                            value={option}
+                            checked={formData.nationality === option}
+                            onChange={handleNationalityChange}
+                            className="h-4 w-4 mr-1 accent-[#2563eb]"
+                          />
+                          <span className="text-celtic-500 font-semibold">{option}</span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
-
                   <div className="md:col-span-2">
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">Instagram Profile URL</label>
                     <input
@@ -354,27 +354,53 @@ const Form = () => {
                 isOpen={openSection === 3}
                 onToggle={() => toggleSection(3)}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                {/* Note above the columns (moved as requested) */}
+                <p className="text-sm text-celtic-500 mb-4 bg-pink-50 p-3 rounded border border-pink-100">
+                  Please note (There will be only one representative from the UTs marked as (UT) in the drop down)
+                </p>
+
+                {/* Three-column: Birth State / Current State / Native(Parents) State with preference selects */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                  {/* Birth State / UT */}
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Native State <span className="text-red-500">*</span>
+                      Birth State / UT <span className="text-red-500">*</span>
                     </label>
                     <select
-                      name="nativeState"
-                      value={formData.nativeState}
+                      name="birthState"
+                      value={formData.birthState || ''}
                       onChange={handleInputChange}
                       required
                       className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     >
-                      <option value="">Select Native State</option>
+                      <option value="">Birth State / UT</option>
                       <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Karnataka">Karnataka</option>
                       <option value="Other">Other</option>
                     </select>
+
+                    <div className="mt-3">
+                      <label className="block text-sm text-celtic-500 mb-1">In order of preference of your audition state / UT*</label>
+                      <select
+                        name="birthStatePreference"
+                        value={formData.birthStatePreference || ''}
+                        onChange={handleInputChange}
+                        className="p-2 w-28 bg-white border border-gray-300 rounded text-celtic-500 focus:outline-none"
+                      >
+                        <option value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                      <p className="text-red-500 text-sm mt-1 hidden">Please select birth state</p>
+                    </div>
                   </div>
 
+                  {/* Current State / UT */}
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Current State <span className="text-red-500">*</span>
+                      Current State / UT <span className="text-red-500">*</span>
                     </label>
                     <select
                       name="currentState"
@@ -383,30 +409,65 @@ const Form = () => {
                       required
                       className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     >
-                      <option value="">Select Current State</option>
+                      <option value="">Current State / UT</option>
                       <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Karnataka">Karnataka</option>
                       <option value="Other">Other</option>
                     </select>
+
+                    <div className="mt-3">
+                      <label className="block text-sm text-celtic-500 mb-1">In order of preference of your audition state / UT*</label>
+                      <select
+                        name="currentStatePreference"
+                        value={formData.currentStatePreference || ''}
+                        onChange={handleInputChange}
+                        className="p-2 w-28 bg-white border border-gray-300 rounded text-celtic-500 focus:outline-none"
+                      >
+                        <option value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                      <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="bg-blue-50 p-3 rounded mb-4">
-                  <p className="text-sm text-blue-800 mb-2 font-semibold">Document Upload Instructions:</p>
-                  <p className="text-xs text-blue-700">Rename files as: "Your Name Document Name" (e.g., "Rashmi Jain Aadhar")</p>
-                </div>
+                  {/* Native State (Parents Birth State) / UT */}
+                  <div>
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Native State (Parents Birth State) / UT <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      name="nativeState"
+                      value={formData.nativeState}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                    >
+                      <option value="">Native State / UT</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Other">Other</option>
+                    </select>
 
-                <div>
-                  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                    Aadhar Card <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    name="aadharCard"
-                    onChange={handleInputChange}
-                    accept=".pdf,.jpg,.jpeg,.png"
-                    required
-                    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                  />
+                    <div className="mt-3">
+                      <label className="block text-sm text-celtic-500 mb-1">In order of preference of your audition state / UT*</label>
+                      <select
+                        name="nativeStatePreference"
+                        value={formData.nativeStatePreference || ''}
+                        onChange={handleInputChange}
+                        className="p-2 w-28 bg-white border border-gray-300 rounded text-celtic-500 focus:outline-none"
+                      >
+                        <option value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                      <p className="text-red-500 text-sm mt-1 hidden">Please select preference</p>
+                    </div>
+                  </div>
                 </div>
               </AccordionSection>
             </div>
