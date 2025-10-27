@@ -10,7 +10,7 @@ import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
 import GotoForm from './GotoForm';
 import Form from '../components/Form';
-
+import Footer from '../components/Footer';
 const Home = () => {
   const [showMainContent, setShowMainContent] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -66,6 +66,11 @@ const Home = () => {
 
           <div id='contact' className="mt-12">
             <Contact />
+          </div>
+
+
+          <div id='contact' className="mt-12">
+            <Footer />
           </div>
         </>
       )}
