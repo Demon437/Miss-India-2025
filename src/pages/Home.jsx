@@ -61,6 +61,9 @@ const Home = () => {
           </div>
 
 
+     <div id='contact'>
+            <About />
+          </div>
 
           <div id="highlight" >
             <Highlight />
@@ -90,9 +93,6 @@ const Home = () => {
           </div>
 
 
-     <div id='contact' className="mt-12">
-            <About />
-          </div>
 
 
           <div id='contact' className="mt-12">

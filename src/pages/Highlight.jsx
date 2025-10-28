@@ -37,7 +37,7 @@ export default function Highlight() {
       aria-labelledby="highlight-heading"
       style={{
         padding: "3rem 1rem",
-        background: "#fff",
+        background: "#d6ac45",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -78,10 +78,12 @@ export default function Highlight() {
             gridAutoRows: "1fr", // <-- ensure each grid cell / row gets equal height
           }}
         >
+        
           {cards.map((c) => (
             <article
               key={c.title}
               role="listitem"
+              tabIndex="0"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -91,18 +93,28 @@ export default function Highlight() {
                 padding: "1.25rem",
                 borderRadius: 12,
                 background: "#f8f8f8",
-                boxShadow: "0 4px 14px rgba(15,15,15,0.06)",
-                transition: "transform 150ms ease, box-shadow 150ms ease",
+                boxShadow: "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)",
+                transition: "transform 180ms cubic-bezier(.2,.8,.2,1), box-shadow 180ms cubic-bezier(.2,.8,.2,1)",
                 cursor: "default",
                 height: "100%", // <-- fill the grid row so all cards match height
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-6px)";
-                e.currentTarget.style.boxShadow = "0 10px 30px rgba(15,15,15,0.12)";
+                e.currentTarget.style.transform = "translateY(-8px)";
+                e.currentTarget.style.boxShadow =
+                  "0 20px 50px rgba(15,15,15,0.18), 0 8px 20px rgba(15,15,15,0.08)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 4px 14px rgba(15,15,15,0.06)";
+                e.currentTarget.style.boxShadow = "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)";
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.transform = "translateY(-8px)";
+                e.currentTarget.style.boxShadow =
+                  "0 20px 50px rgba(15,15,15,0.18), 0 8px 20px rgba(15,15,15,0.08)";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)";
               }}
             >
               <img
@@ -116,9 +128,10 @@ export default function Highlight() {
                   objectFit: "cover",   // crop to fit the frame
                   flex: "0 0 auto",
                   display: "block",
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
                 }}
               />
+
 
               <h3 style={{ margin: "0.4rem 0 0 0", fontSize: "1.05rem", color: "#111" }}>{c.title}</h3>
               <p style={{ margin: "0.4rem 0 0 0", color: "#555", fontSize: ".95rem" }}>{c.desc}</p>

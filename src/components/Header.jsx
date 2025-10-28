@@ -8,7 +8,7 @@ const Header = ({ onLogoClick }) => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80;
+      const headerHeight = 64;
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
@@ -36,7 +36,7 @@ const Header = ({ onLogoClick }) => {
               <img
                 src={logoImage}
                 alt="BRIGHT STAGE Logo"
-                className="h-16 w-auto object-contain cursor-pointer"
+                className="h-12 w-auto object-contain cursor-pointer"
               />
             </button>
           </div>
@@ -45,31 +45,26 @@ const Header = ({ onLogoClick }) => {
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
             >
               Home
             </button>
-            <button
-              onClick={() => scrollToSection('gallery')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
-            >
-              Gallery
-            </button>
+           
             <button
               onClick={() => scrollToSection('services')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10"
+              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
             >
               Contact
             </button>

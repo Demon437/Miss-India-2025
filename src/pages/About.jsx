@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImage from "../assets/ab.jpg";
+import aboutImage from "../assets/About Us Bright stage.jpg";
 import './About.css'; // Add this new CSS file
 
 export default function About() {
@@ -16,11 +16,21 @@ export default function About() {
                 padding: "0",
                 borderRadius: "0"
             }}>
+                <h1 style={{
+                    textAlign: "center",
+                    padding: "2rem 0",
+                    fontSize: "2.5rem",
+                    color: "#333",
+                    fontFamily: "'Playfair Display', serif",
+                    margin: "0",
+                    fontWeight: 700
+                }}>About Us</h1>
                 <div style={{ display: "flex", width: "100%", margin: 0 }}>
                     <img src={aboutImage} alt="About Bright Stage" style={{
                         width: "50%",
-                        height: "500px",
-                        objectFit: "cover"
+                        height: "auto", // Changed from fixed 500px to auto
+                        objectFit: "cover",
+                        alignSelf: "center" // Added to vertically align with content
                     }} />
                     <div style={{
                         flex: 1,
@@ -56,7 +66,7 @@ export default function About() {
                         <p>"To illuminate every celebration with elegance, brilliance, and unforgettable experiences."</p>
                     </div>
 
-                    <div className="card mission-card">
+                    <div className="card mission-card ">
                         <h2>Our Mission</h2>
                         <p>"Crafting flawlessly executed events where every moment shines, every story captivates, and memories last a lifetime."</p>
                     </div>
