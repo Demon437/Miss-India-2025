@@ -3,10 +3,10 @@ import logo from "../assets/logo.jpg";
 
 const GotoForm = ({ onFormClick }) => {
     return (
-        <div className="min-h-screen bg-[#fdfdfd] flex justify-center items-center p-6">
-            <div className="bg-white shadow-md rounded-xl max-w-4xl w-full p-10 relative">
-                {/* Top Button */}
-                <div className="absolute top-6 right-6">
+        <div className="min-h-screen bg-[#fdfdfd] flex justify-center items-start p-6">
+            <div className="bg-white shadow-md rounded-xl max-w-4xl w-full p-6 md:p-10 relative">
+                {/* Top Button - show absolute on md+, stacked full-width on mobile */}
+                <div className="hidden md:block absolute md:top-48 top-6 right-6">
                     <button
                         onClick={onFormClick}
                         className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
@@ -16,19 +16,29 @@ const GotoForm = ({ onFormClick }) => {
                 </div>
 
                 {/* Logo */}
-                <div className="flex flex-col items-center mb-6 mt-4">
-                    {/* container ensures larger display, centered and hides any stray vertical edges */}
-                    <div className="w-full max-w-[200px] overflow-hidden bg-white flex items-center justify-center px-4 py-3 rounded">
+                <div className="flex flex-col items-center mb-4 mt-2">
+                    {/* Mobile: smaller container; md+ keeps larger size */}
+                    <div className="w-full max-w-[260px] md:max-w-[380px] h-[90px] md:h-[150px] overflow-hidden bg-white flex items-center justify-center rounded">
                         <img
                             src={logo}
                             alt="Bright-Stage Logo"
-                            className="w-full h-auto object-contain block"
+                            className="w-auto max-h-full object-contain block"
                         />
+                    </div>
+
+                    {/* Mobile CTA under logo */}
+                    <div className="w-full max-w-[240px] mt-4 md:hidden mx-auto">
+                        <button
+                            onClick={onFormClick}
+                            className="w-full font-medium py-3 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
+                        >
+                            Go to the form
+                        </button>
                     </div>
                 </div>
 
                 {/* Title */}
-                <h2 className="text-[22px] font-semibold text-yellow-600 mb-6">
+                <h2 className="text-[20px] md:text-[22px] font-semibold text-yellow-600 mb-4 md:mb-6">
                     Steps to apply
                 </h2>
 
@@ -48,12 +58,12 @@ const GotoForm = ({ onFormClick }) => {
                         "Once all the fields are completed, click on accept T&Cs and submit the form.",
                         "You will receive an automated email upon successful submission of the form.",
                     ].map((text, idx) => (
-                        <div key={idx} className="grid grid-cols-[auto_1fr] gap-x-6 items-start">
-                            <div className="text-yellow-600 font-semibold pr-2">
+                        <div key={idx} className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-6 items-start">
+                            <div className="text-yellow-600 font-semibold pr-2 mb-2 md:mb-0">
                                 Step {idx + 1}:
                             </div>
                             <div>
-                                <div>{text}</div>
+                                <div className="text-[15px]">{text}</div>
                                 <hr className={idx === 5 ? "hidden" : "mt-3 border-gray-200"} />
                             </div>
                         </div>
@@ -61,7 +71,7 @@ const GotoForm = ({ onFormClick }) => {
                 </div>
 
                 {/* Note */}
-                <p className="text-gray-700 mt-8 text-[15px]">
+                <p className="text-gray-700 mt-6 md:mt-8 text-[15px]">
                     Hope you have understood the steps to apply.
                 </p>
 
@@ -83,19 +93,18 @@ const GotoForm = ({ onFormClick }) => {
                     </p>
                 </div>
                 {/* Thank You */}
-                <div className="text-left text-gray-700 text-[15px] mt-10 font-normal ">
+                <div className="text-left text-gray-700 text-[15px] mt-8 font-normal ">
                     Thank You!
                 </div>
-                {/* Bottom Button */}
-                <div className="flex justify-end mt-10">
+                {/* Bottom Button for md+ (already absolute top on md); keep bottom CTA for larger screens too) */}
+                <div className="flex justify-end mt-6">
                     <button
                         onClick={onFormClick}
-                        className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
+                        className="hidden md:inline-block font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form
                     </button>
                 </div>
-
 
             </div>
         </div>
