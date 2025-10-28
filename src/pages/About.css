@@ -14,11 +14,12 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     animation: fadeIn 0.8s ease-out;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* 👈 default soft shadow */
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(214, 172, 69, 0.2);
+    box-shadow: 0 15px 30px rgba(214, 172, 69, 0.4); /* 👈 deeper golden glow */
 }
 
 .card h2 {
@@ -120,42 +121,13 @@
     }
 }
 
-
-
-
-.card {
-    background: #d6ac45;
-    padding: 2rem;
-    border-radius: 12px;
-    color: black;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    animation: fadeIn 0.8s ease-out;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* 👈 default soft shadow */
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(214, 172, 69, 0.4); /* 👈 deeper golden glow */
-}
-
-.card {
-    box-shadow: 0 4px 10px rgba(214, 172, 69, 0.25);
-}
-.card {
-    background: #d6ac45;
-    padding: 2rem;
-    border-radius: 12px;
-    color: black;
-    cursor: pointer;
-    animation: fadeIn 0.8s ease-out;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* 👈 deeper base shadow */
-    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
-}
-
-/* ✨ Hover: zoom + slight tilt + rich glow shadow */
-.card:hover {
-    transform: translateY(-10px) scale(1.05) rotate3d(1, 1, 0, 2deg);
-    box-shadow: 0 25px 50px rgba(214, 172, 69, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #f2d36b, #d6ac45);
+.player-spinner {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height: 300px; /* adjust */
+    background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+    color: #fff;
+    font-weight:600;
+    border-radius: 8px;
 }

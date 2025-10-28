@@ -15,7 +15,7 @@ const OurWorld = () => {
                 "Annual Meets & Townhalls",
                 "Dealer Conferences & Partner Engagements",
                 "Product Launches & Brand Showcases",
-                
+
             ],
             image: corporateImg2,
         },
@@ -27,7 +27,7 @@ const OurWorld = () => {
                 "Beauty Pageants & Fashion Extravaganzas",
                 "Music Concerts, Dance & Theatre Nights",
                 "Art Exhibitions, Open Mics & Cultural Evenings",
-               
+
             ],
             image: talentImg2,
         },
@@ -40,7 +40,7 @@ const OurWorld = () => {
                 "Designer Décor & Show-Stopping Bridal Entries",
                 "Engagements, Anniversaries & Family Galas",
                 "Celebrity Acts & Full Wedding Planning",
-               
+
             ],
             image: weddings1,
         },
@@ -52,7 +52,7 @@ const OurWorld = () => {
                 "State-Sponsored Ceremonies & National Events",
                 "Cultural Festivals, Lok Utsavs & Awareness Campaigns",
                 "Melas, Trade Expos & Record-Making Events",
-                
+
             ],
             image: corporateImg1,
         },
@@ -76,6 +76,7 @@ const OurWorld = () => {
                             <img
                                 src={item.image}
                                 alt={item.title}
+                                loading="lazy" // Add this attribute for lazy loading
                                 className="rounded-2xl shadow-lg w-full object-cover h-[350px]"
                             />
                         </div>
