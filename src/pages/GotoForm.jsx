@@ -4,7 +4,8 @@ import logo from "../assets/logo.jpg";
 const GotoForm = ({ onFormClick }) => {
     return (
         <div className="min-h-screen bg-[#fdfdfd] flex justify-center items-start p-6">
-            <div className="bg-white shadow-md rounded-xl max-w-4xl w-full p-6 md:p-10 relative">
+                     <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-25">
+
                 {/* Top Button - show absolute on md+, stacked full-width on mobile */}
                 <div className="hidden md:block absolute md:top-48 top-6 right-6">
                     <button

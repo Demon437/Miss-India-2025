@@ -41,7 +41,7 @@ const Home = () => {
 
       {/* Initial view - only GotoForm */}
       {!showMainContent && !showForm && (
-        <div className="mt-20">
+        <div>
           <GotoForm onFormClick={handleGoToFormClick} />
         </div>
       )}
