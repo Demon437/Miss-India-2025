@@ -18,7 +18,7 @@ const GotoForm = ({ onFormClick }) => {
                 {/* Logo */}
                 <div className="flex flex-col items-center mb-6 mt-4">
                     {/* container ensures larger display, centered and hides any stray vertical edges */}
-                    <div className="w-full max-w-[180px] overflow-hidden bg-white flex items-center justify-center px-4 py-3 rounded">
+                    <div className="w-full max-w-[200px] overflow-hidden bg-white flex items-center justify-center px-4 py-3 rounded">
                         <img
                             src={logo}
                             alt="Bright-Stage Logo"
