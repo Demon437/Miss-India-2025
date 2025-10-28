@@ -84,11 +84,11 @@ const GotoForm = ({ onFormClick }) => {
                     <p>
                         Contact:{" "}
                         <span className="font-medium">
-                            +91 9619937295 / +91 7039464909
+                            +91 7000939353 / +91 9425311203
                         </span>{" "}
                         or kindly write to us on{" "}
                         <span className="text-dark">
-                            missindiaorg@timesgroup.com
+                            missmp@brightstage.co.in
                         </span>
                     </p>
                 </div>
