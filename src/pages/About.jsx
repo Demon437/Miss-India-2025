@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import CountUp from 'react-countup';
 import aboutImage from "../assets/About Us Bright stage.jpg";
 import './About.css'; // Add this new CSS file
 
 export default function About() {
+    const [isVisible, setIsVisible] = useState(false);
+    const [key, setKey] = useState(0); // Add this new state
+    const statsRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Toggle visibility based on intersection
+                setIsVisible(entry.isIntersecting);
+                // Increment key when section becomes visible to force re-render
+                if (entry.isIntersecting) {
+                    setKey(prev => prev + 1);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (statsRef.current) {
+            observer.observe(statsRef.current);
+        }
+
+        return () => {
+            if (statsRef.current) {
+                observer.unobserve(statsRef.current);
+            }
+        };
+    }, []);
+
     return (
         <main style={{
             padding: 0,
@@ -74,17 +103,29 @@ export default function About() {
 
                 <div className="stats-section">
                     <h2>Event Management Services That Turn Ideas into Reality</h2>
-                    <div className="stats-container">
+                    <div className="stats-container" ref={statsRef}>
                         <div className="stat-item">
-                            <h3>33</h3>
+                            <h3>
+                                {isVisible && (
+                                    <CountUp key={key} start={0} end={33} duration={2.5} />
+                                )}
+                            </h3>
                             <p>Year Legacy</p>
                         </div>
                         <div className="stat-item">
-                            <h3>10K</h3>
+                            <h3>
+                                {isVisible && (
+                                    <CountUp key={key} start={0} end={10} duration={2.5} suffix="K" />
+                                )}
+                            </h3>
                             <p>Experiences Created</p>
                         </div>
                         <div className="stat-item">
-                            <h3>50+</h3>
+                            <h3>
+                                {isVisible && (
+                                    <CountUp key={key} start={0} end={50} duration={2.5} suffix="+" />
+                                )}
+                            </h3>
                             <p>Awards Won</p>
                         </div>
                     </div>

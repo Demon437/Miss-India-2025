@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import destWedding from "../assets/Destination Weddings 3.jpg";
 import corp from "../assets/BS Corporate 2.jpg";
@@ -37,6 +37,52 @@ const cards = [
     desc: "Meetings, incentives, conferences and exhibitions with meticulous planning.",
   },
 ];
+
+// lightweight lazy image using IntersectionObserver
+const LazyImage = ({ src, alt, style, srcSet, sizes }) => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const placeholder =
+    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisible(true);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "200px" } // start loading before entering viewport
+      );
+      io.observe(node);
+      return () => io.disconnect();
+    } else {
+      // fallback - load immediately
+      setVisible(true);
+    }
+  }, []);
+
+  return (
+    <motion.img
+      ref={ref}
+      src={visible ? src : placeholder}
+      srcSet={visible && srcSet ? srcSet : undefined}
+      sizes={visible && sizes ? sizes : undefined}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      fetchPriority={visible ? "auto" : "low"}
+      style={style}
+    />
+  );
+};
 
 const Card = ({ title, img, alt, desc }) => {
   const rotateX = useSpring(0, springConfig);
@@ -92,7 +138,7 @@ const Card = ({ title, img, alt, desc }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <motion.img
+      <LazyImage
         src={img}
         alt={alt}
         style={{
@@ -106,6 +152,10 @@ const Card = ({ title, img, alt, desc }) => {
           transformStyle: "preserve-3d",
           transform: "translateZ(20px)",
         }}
+      /* Optional: add responsive variants if you create smaller images:
+         srcSet={`${small} 480w, ${medium} 800w, ${img} 1200w`}
+         sizes="(max-width: 600px) 480px, 200px"
+      */
       />
       <motion.h3
         style={{
