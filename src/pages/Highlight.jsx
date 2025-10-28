@@ -179,6 +179,7 @@ export default function Highlight() {
       style={{
         padding: "3rem 1rem",
         background: "#d6ac45",
+        
       }}
     >
       <motion.div
@@ -189,7 +190,7 @@ export default function Highlight() {
         style={{ maxWidth: 1200, margin: "0 auto" }}
       >
         <h2
-          id="highlight-heading"
+          id="Services"
           style={{
             fontSize: "1.5rem",
             margin: "0 0 1rem 0",

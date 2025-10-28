@@ -56,12 +56,16 @@ const Home = () => {
       {/* Main content view - changed: render only About, Highlight, Partnership, Philosophy */}
       {showMainContent && (
         <>
-          <div id="about" className="mt-10">
+          <div id="home" className="mt-10">
             < Hero />
           </div>
 
 
-     <div id='contact'>
+          <div id='services'>
+            <Highlight />
+          </div>
+
+          <div id='about'>
             <About />
           </div>
 
@@ -70,10 +74,10 @@ const Home = () => {
           </div>
 
 
-<div id="about" className="mt-10">
+          <div id="about" className="mt-10">
             < OurWorld />
           </div>
-{/* 
+          {/* 
 
           <div id="philosophy" className="mt-12">
             <ClientsSection />
@@ -88,7 +92,7 @@ const Home = () => {
           </div> */}
 
 
-          <div id='contact' className="mt-12">
+          <div id='contact'>
             <Footer />
           </div>
         </>
