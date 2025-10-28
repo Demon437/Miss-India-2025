@@ -41,8 +41,8 @@ const Footer = () => {
                     {/* Contact & Social */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-                        <p className="text-gray-400 mb-2">Email: info@brightstage.com</p>
-                        <p className="text-gray-400 mb-4">Phone: +1 (123) 456-7890</p>
+                        <p className="text-gray-400 mb-2">Email: missmp@brightstage.co.in</p>
+                        <p className="text-gray-400 mb-4">Phone:+91 7000939353</p>
                         <div className="flex space-x-4">
                             <a href="#" className="hover:text-gray-300"><i className="fab fa-facebook-f"></i></a>
                             <a href="#" className="hover:text-gray-300"><i className="fab fa-twitter"></i></a>

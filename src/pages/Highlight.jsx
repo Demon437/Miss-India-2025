@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
 import destWedding from "../assets/Destination Weddings 3.jpg";
 import corp from "../assets/BS Corporate 2.jpg";
 import talent1 from "../assets/BS Talent 1.png";
@@ -8,7 +8,7 @@ import talent2 from "../assets/BS Talent 2.jpg";
 const springConfig = {
   damping: 30,
   stiffness: 100,
-  mass: 2
+  mass: 2,
 };
 
 const cards = [
@@ -38,53 +38,46 @@ const cards = [
   },
 ];
 
-// lightweight lazy image using IntersectionObserver
-const LazyImage = ({ src, alt, style, srcSet, sizes }) => {
+// Lazy image loader (for performance)
+const LazyImage = ({ src, alt, style }) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-  const placeholder =
-    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setVisible(true);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { rootMargin: "200px" } // start loading before entering viewport
-      );
-      io.observe(node);
-      return () => io.disconnect();
-    } else {
-      // fallback - load immediately
-      setVisible(true);
-    }
+    const io = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "150px" }
+    );
+    io.observe(node);
+    return () => io.disconnect();
   }, []);
 
   return (
     <motion.img
       ref={ref}
-      src={visible ? src : placeholder}
-      srcSet={visible && srcSet ? srcSet : undefined}
-      sizes={visible && sizes ? sizes : undefined}
+      src={
+        visible
+          ? src
+          : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+      }
       alt={alt}
       loading="lazy"
       decoding="async"
-      fetchPriority={visible ? "auto" : "low"}
       style={style}
     />
   );
 };
 
-const Card = ({ title, img, alt, desc }) => {
+const Card = ({ title, img, alt, desc, index }) => {
   const rotateX = useSpring(0, springConfig);
   const rotateY = useSpring(0, springConfig);
   const scale = useSpring(1, springConfig);
@@ -103,10 +96,7 @@ const Card = ({ title, img, alt, desc }) => {
     rotateY.set(rotateYValue);
   };
 
-  const handleMouseEnter = () => {
-    scale.set(1.05);
-  };
-
+  const handleMouseEnter = () => scale.set(1.05);
   const handleMouseLeave = () => {
     scale.set(1);
     rotateX.set(0);
@@ -117,6 +107,10 @@ const Card = ({ title, img, alt, desc }) => {
     <motion.article
       role="listitem"
       tabIndex="0"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: index * 0.15 }}
+      viewport={{ once: false, amount: 0.3 }} // 🔥 Repeat every time it enters view
       style={{
         display: "flex",
         flexDirection: "column",
@@ -126,7 +120,8 @@ const Card = ({ title, img, alt, desc }) => {
         padding: "1.25rem",
         borderRadius: 12,
         background: "#f8f8f8",
-        boxShadow: "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)",
+        boxShadow:
+          "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)",
         height: "100%",
         transformStyle: "preserve-3d",
         perspective: "1000px",
@@ -152,17 +147,13 @@ const Card = ({ title, img, alt, desc }) => {
           transformStyle: "preserve-3d",
           transform: "translateZ(20px)",
         }}
-      /* Optional: add responsive variants if you create smaller images:
-         srcSet={`${small} 480w, ${medium} 800w, ${img} 1200w`}
-         sizes="(max-width: 600px) 480px, 200px"
-      */
       />
       <motion.h3
         style={{
           margin: "0.4rem 0 0 0",
           fontSize: "1.05rem",
           color: "#111",
-          transform: "translateZ(30px)"
+          transform: "translateZ(30px)",
         }}
       >
         {title}
@@ -172,7 +163,7 @@ const Card = ({ title, img, alt, desc }) => {
           margin: "0.4rem 0 0 0",
           color: "#555",
           fontSize: ".95rem",
-          transform: "translateZ(25px)"
+          transform: "translateZ(25px)",
         }}
       >
         {desc}
@@ -190,7 +181,13 @@ export default function Highlight() {
         background: "#d6ac45",
       }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <motion.div
+        initial={{ opacity: 0, y: -40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false }}
+        style={{ maxWidth: 1200, margin: "0 auto" }}
+      >
         <h2
           id="highlight-heading"
           style={{
@@ -228,11 +225,11 @@ export default function Highlight() {
             gridAutoRows: "1fr",
           }}
         >
-          {cards.map((c) => (
-            <Card key={c.title} {...c} />
+          {cards.map((c, index) => (
+            <Card key={c.title} {...c} index={index} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
