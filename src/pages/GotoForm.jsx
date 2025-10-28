@@ -1,11 +1,12 @@
 import React from "react";
+import logo from "../assets/logo.jpg";
 
 const GotoForm = ({ onFormClick }) => {
     return (
         <div className="min-h-screen bg-[#fdfdfd] flex justify-center items-center p-6">
             <div className="bg-white shadow-md rounded-xl max-w-4xl w-full p-10 relative">
                 {/* Top Button */}
-                <div className="absolute top-33 right-6">
+                <div className="absolute top-6 right-6">
                     <button
                         onClick={onFormClick}
                         className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
@@ -15,12 +16,15 @@ const GotoForm = ({ onFormClick }) => {
                 </div>
 
                 {/* Logo */}
-                <div className="flex flex-col items-center mb-4 mt-4">
-                    <img
-                        src="/logo.png"
-                        alt="Femina Miss India Logo"
-                        className="h-16 mb-2"
-                    />
+                <div className="flex flex-col items-center mb-6 mt-4">
+                    {/* container ensures larger display, centered and hides any stray vertical edges */}
+                    <div className="w-full max-w-[180px] overflow-hidden bg-white flex items-center justify-center px-4 py-3 rounded">
+                        <img
+                            src={logo}
+                            alt="Bright-Stage Logo"
+                            className="w-full h-auto object-contain block"
+                        />
+                    </div>
                 </div>
 
                 {/* Title */}
