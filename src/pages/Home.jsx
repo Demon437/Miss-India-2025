@@ -16,6 +16,7 @@ import Gallery from './Gallery';
 import ClientsSection from '../components/ClientsSection';
 import TeamSection from '../components/TeamSection';
 import Testimonials from '../components/Testimonials';
+import OurWorld from '../components/OurWorld';
 
 
 const Home = () => {
@@ -55,13 +56,21 @@ const Home = () => {
       {/* Main content view - changed: render only About, Highlight, Partnership, Philosophy */}
       {showMainContent && (
         <>
-          {/* <div id="about" className="mt-10">
+          <div id="about" className="mt-10">
             < Hero />
           </div>
+
+
 
           <div id="highlight" >
             <Highlight />
           </div>
+
+
+<div id="about" className="mt-10">
+            < OurWorld />
+          </div>
+
 
           <div id="about" className="mt-10">
             < Gallery />
@@ -88,7 +97,7 @@ const Home = () => {
 
           <div id='contact' className="mt-12">
             <Footer />
-          </div> */}
+          </div>
         </>
       )}
     </div>

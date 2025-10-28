@@ -1,63 +1,83 @@
 import React from "react";
+import aboutImage from "../assets/ab.jpg";
+import './About.css'; // Add this new CSS file
 
 export default function About() {
     return (
-        <main style={{ padding: 28, fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-            <section aria-labelledby="about-heading" style={{ maxWidth: 1100, margin: "0 auto" }}>
-                <h1 id="about-heading" style={{ fontSize: 32, marginBottom: 12 }}>About Bright-Stage</h1>
+        <main style={{
+            padding: 0,
+            fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+            width: "100%"
+        }}>
+            <section aria-labelledby="about-heading" style={{
+                width: "100%",
+                margin: "0",
+                backgroundColor: "white",
+                padding: "0",
+                borderRadius: "0"
+            }}>
+                <div style={{ display: "flex", width: "100%", margin: 0 }}>
+                    <img src={aboutImage} alt="About Bright Stage" style={{
+                        width: "50%",
+                        height: "500px",
+                        objectFit: "cover"
+                    }} />
+                    <div style={{
+                        flex: 1,
+                        padding: "2rem",
+                        fontFamily: "'Playfair Display', serif" // Add this elegant font
+                    }}>
+                        <p style={{
+                            color: "#333",
+                            lineHeight: 1.8,
+                            marginBottom: 24,
+                            fontSize: "1.1rem",
+                            fontWeight: 400,
+                            letterSpacing: "0.3px"
+                        }}>
+                            Bright Stage is a premium event management company that brings ideas to life with elegance, energy, and excellence. The name "Bright Stage" symbolizes a space where moments shine just like a spotlight on a performer. It's about creating unforgettable experiences, whether it's a Beauty Pageant, Concerts, Corporate summit or cultural event. The "Stage" represents success, celebration, and visibility, while "Bright" conveys positivity, brilliance, and high standards. We craft events that are not just well-organized but emotionally memorable where every person, brand, or idea gets their moment to shine.
+                        </p>
+                        <p style={{
+                            color: "#333",
+                            lineHeight: 1.8,
+                            marginBottom: 24,
+                            fontSize: "1.1rem",
+                            fontWeight: 400,
+                            letterSpacing: "0.3px"
+                        }}>
+                            At Bright Stage, we don't just organize events we weave stories. Stories of love, culture, purpose & ambition. Every stage we set, every light we shine, and every moment we craft is designed to make people feel special something real. From a CEO's keynote to a bride's big entry, from a cultural festival to a cause-driven campaign we transform visions into experiences that live on long after the applause fades.
+                        </p>
+                    </div>
+                </div>
 
-                <p style={{ color: "#556", lineHeight: 1.7, marginBottom: 24 }}>
-                    Bright-Stage crafts memorable events and digital experiences — from product launches to curated cultural shows.
-                    We blend creative direction, production expertise and data-led planning to deliver moments that connect with audiences.
-                </p>
-
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 20, alignItems: "start" }}>
-                    <div>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                            <article style={{ background: "#fff", padding: 18, borderRadius: 12, boxShadow: "0 10px 30px rgba(10,20,30,0.06)", border: "1px solid rgba(10,20,30,0.03)" }}>
-                                <h2 style={{ margin: "0 0 8px 0", fontSize: 18 }}>Our Vision</h2>
-                                <p style={{ margin: 0, color: "#444", lineHeight: 1.6 }}>
-                                    To be the studio that turns ideas into immersive experiences — uplifting audiences and creating lasting impact.
-                                </p>
-                            </article>
-
-                            <article style={{ background: "#fff", padding: 18, borderRadius: 12, boxShadow: "0 10px 30px rgba(10,20,30,0.06)", border: "1px solid rgba(10,20,30,0.03)" }}>
-                                <h2 style={{ margin: "0 0 8px 0", fontSize: 18 }}>Our Mission</h2>
-                                <p style={{ margin: 0, color: "#444", lineHeight: 1.6 }}>
-                                    Deliver beautifully executed events through strategic storytelling, flawless production, and measurable outcomes.
-                                </p>
-                            </article>
-                        </div>
-
-                        <div style={{ marginTop: 18 }}>
-                            <h3 style={{ margin: "0 0 10px 0" }}>What we do</h3>
-                            <ul style={{ margin: 0, paddingLeft: 18, color: "#444", lineHeight: 1.7 }}>
-                                <li>Product launches & brand experiences</li>
-                                <li>Corporate conferences & summits</li>
-                                <li>Live shows, cultural events & performances</li>
-                                <li>Creative direction, stage design & AV production</li>
-                            </ul>
-                        </div>
+                <div className="cards-container">
+                    <div className="card vision-card">
+                        <h2>Our Vision</h2>
+                        <p>"To illuminate every celebration with elegance, brilliance, and unforgettable experiences."</p>
                     </div>
 
-                    <aside style={{ background: "#f8fbff", padding: 18, borderRadius: 12, border: "1px solid rgba(10,20,30,0.03)" }}>
-                        <h3 style={{ marginTop: 0 }}>Why choose us</h3>
-                        <p style={{ color: "#444", lineHeight: 1.6 }}>
-                            Experienced producers, creative-first approach, and a client-focused process — we make complex events look effortless.
-                        </p>
+                    <div className="card mission-card">
+                        <h2>Our Mission</h2>
+                        <p>"Crafting flawlessly executed events where every moment shines, every story captivates, and memories last a lifetime."</p>
+                    </div>
+                </div>
 
-                        <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
-                            <div style={{ background: "#fff", padding: 10, borderRadius: 8, boxShadow: "0 6px 18px rgba(10,20,30,0.04)" }}>
-                                <strong>End-to-end production</strong>
-                                <div style={{ fontSize: 13, color: "#666" }}>Concept → Design → Execute</div>
-                            </div>
-
-                            <div style={{ background: "#fff", padding: 10, borderRadius: 8, boxShadow: "0 6px 18px rgba(10,20,30,0.04)" }}>
-                                <strong>Trusted partners</strong>
-                                <div style={{ fontSize: 13, color: "#666" }}>Vetted vendors & reliable crew</div>
-                            </div>
+                <div className="stats-section">
+                    <h2>Event Management Services That Turn Ideas into Reality</h2>
+                    <div className="stats-container">
+                        <div className="stat-item">
+                            <h3>33</h3>
+                            <p>Year Legacy</p>
                         </div>
-                    </aside>
+                        <div className="stat-item">
+                            <h3>10K</h3>
+                            <p>Experiences Created</p>
+                        </div>
+                        <div className="stat-item">
+                            <h3>50+</h3>
+                            <p>Awards Won</p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
