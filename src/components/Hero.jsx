@@ -1,20 +1,46 @@
 // ...existing code...
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import showreel from "../assets/15 sec website showreel.mp4";
 import VariableProximity from "./VariableProximity";
 
 export default function Hero() {
     const containerRef = useRef(null);
+    const videoRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const node = videoRef.current;
+        if (!node) return;
+        if ("IntersectionObserver" in window) {
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setIsVisible(true);
+                        }
+                    });
+                },
+                { rootMargin: "200px 0px" }
+            );
+            io.observe(node);
+            return () => io.disconnect();
+        } else {
+            setIsVisible(true);
+        }
+    }, []);
 
     return (
         <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
             {/* Background video as a cover backdrop */}
             <video
-                src={showreel}
-                autoPlay
+                ref={videoRef}
+                src={isVisible ? showreel : undefined}
+                autoPlay={isVisible}
                 muted
                 loop
                 playsInline
+                preload="none"
+                poster="/assets/placeholder-dark.jpg"
                 style={{
                     position: "absolute",
                     top: 0,

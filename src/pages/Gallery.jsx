@@ -191,6 +191,8 @@ export default function Gallery({ isAdmin = true }) {
                                 <img
                                     src={m.src}
                                     alt={m.title || "media"}
+                                    loading="lazy"
+                                    decoding="async"
                                     style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }}
                                 />
                                 {editing && (
@@ -219,10 +221,37 @@ export default function Gallery({ isAdmin = true }) {
                         ) : (
                             <div style={{ position: 'relative' }}>
                                 <video
-                                    src={m.src}
+                                    src={undefined}
+                                    data-src={m.src}
                                     controls
-                                    preload="metadata"
+                                    preload="none"
+                                    muted
+                                    playsInline
                                     style={{ width: "100%", height: 140, objectFit: "cover", background: "#000" }}
+                                    ref={(el) => {
+                                        if (!el) return;
+                                        if ("IntersectionObserver" in window) {
+                                            const io = new IntersectionObserver((entries, observer) => {
+                                                entries.forEach((entry) => {
+                                                    if (entry.isIntersecting) {
+                                                        const s = el.getAttribute('data-src');
+                                                        if (s) {
+                                                            el.src = s;
+                                                            el.load();
+                                                        }
+                                                        observer.unobserve(entry.target);
+                                                    }
+                                                });
+                                            }, { rootMargin: '200px 0px' });
+                                            io.observe(el);
+                                        } else {
+                                            const s = el.getAttribute('data-src');
+                                            if (s) {
+                                                el.src = s;
+                                                el.load();
+                                            }
+                                        }
+                                    }}
                                 />
                                 {editing && (
                                     <button

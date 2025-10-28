@@ -156,18 +156,11 @@ export default function Page() {
                     </div>
 
                     <div style={styles.heroVideo}>
-                        <video
+                        <VisibilityVideo
                             src="/assets/intro.mp4"
-                            style={styles.video}
                             poster="https://via.placeholder.com/1200x600?text=Intro+Video+Placeholder"
-                            controls
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                        >
-                            Your browser does not support the video tag.
-                        </video>
+                            style={styles.video}
+                        />
                     </div>
                 </section>
 
@@ -287,6 +280,43 @@ export default function Page() {
                 © {new Date().getFullYear()} Bright Stage — Elegant events & timeless memories.
             </footer>
         </div>
+    );
+}
+
+function VisibilityVideo({ src, poster, style }) {
+    const ref = useRef(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+        if ("IntersectionObserver" in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) setVisible(true);
+                });
+            }, { rootMargin: '200px 0px' });
+            io.observe(node);
+            return () => io.disconnect();
+        } else {
+            setVisible(true);
+        }
+    }, []);
+
+    return (
+        <video
+            ref={ref}
+            src={visible ? src : undefined}
+            poster={poster}
+            style={style}
+            controls
+            muted
+            loop
+            playsInline
+            preload="none"
+        >
+            Your browser does not support the video tag.
+        </video>
     );
 }
 
