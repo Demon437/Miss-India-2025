@@ -74,6 +74,8 @@ const Form = () => {
     dateOfBirth: '',
     age: '',
     height: '',
+    heightFeet: '',       // added
+    heightInches: '',     // added
     mobile: '',
     alternateMobile: '',
     email: '',
@@ -102,6 +104,20 @@ const Form = () => {
 
   const handleNationalityChange = (e) => {
     setFormData({ ...formData, nationality: e.target.value });
+  };
+
+  // handle feet-specific rules for inches
+  const handleHeightFeetChange = (e) => {
+    const feet = e.target.value;
+    setFormData(prev => {
+      let inches = prev.heightInches;
+      // if feet is 5, ensure inches start from 3" (clear if below 3)
+      if (feet === '5') {
+        if (inches !== '' && Number(inches) < 3) inches = '';
+      }
+      // if feet is 6, inches allowed from 0 (no change needed)
+      return { ...prev, heightFeet: feet, heightInches: inches };
+    });
   };
 
   const handleSubmit = (e) => {
@@ -208,7 +224,7 @@ const Form = () => {
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6">
-                       <span className="text-red-500"></span>
+                      <span className="text-red-500"></span>
                     </label>
                     <input
                       type="text"
@@ -232,7 +248,7 @@ const Form = () => {
                     <div className="flex gap-2">
                       <select
                         name="birthDate"
-                        className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 text-sm focus:border-oldGold-500 focus:outline-none"
+                        className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
                       >
                         <option value="">Date</option>
                         {[...Array(31)].map((_, i) => (
@@ -285,21 +301,31 @@ const Form = () => {
                     <div className="flex gap-2">
                       <select
                         name="heightFeet"
+                        value={formData.heightFeet}
+                        onChange={handleHeightFeetChange}
                         className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Feet</option>
                         {[5, 6].map(feet => (
-                          <option key={feet} value={feet}>{feet}</option>
+                          <option key={feet} value={String(feet)}>{feet}</option>
                         ))}
                       </select>
                       <select
                         name="heightInches"
+                        value={formData.heightInches}
+                        onChange={handleInputChange}
                         className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Inches</option>
-                        {[...Array(12)].map((_, i) => (
-                          <option key={i} value={i}>{i}"</option>
-                        ))}
+                        {(() => {
+                          const feet = formData.heightFeet;
+                          const start = feet === '5' ? 3 : (feet === '6' ? 0 : 0);
+                          const options = [];
+                          for (let i = start; i <= 11; i++) {
+                            options.push(<option key={i} value={String(i)}>{i}"</option>);
+                          }
+                          return options;
+                        })()}
                       </select>
                     </div>
                   </div>
@@ -337,7 +363,7 @@ const Form = () => {
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
-                    placeholder='Email'
+                      placeholder='Email'
                       type="email"
                       name="email"
                       value={formData.email}
@@ -416,12 +442,44 @@ const Form = () => {
                       className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm"
                     >
                       <option value="">Birth State / UT</option>
-                      <option value="Madhya Pradesh">Madhya Pradesh</option>
-                      <option value="Delhi">Delhi</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jharkhand">Jharkhand</option>
                       <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                      <option value="Delhi (NCT)">Delhi (NCT)</option>
+                      <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                      <option value="Ladakh">Ladakh</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Puducherry">Puducherry</option>
                       <option value="Other">Other</option>
                     </select>
-
                     <div className="mt-3 flex items-center gap-4">
                       <select
                         name="birthStatePreference"
@@ -449,12 +507,45 @@ const Form = () => {
                       value={formData.currentState}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm" 
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm"
                     >
                       <option value="">Current State / UT</option>
-                      <option value="Madhya Pradesh">Madhya Pradesh</option>
-                      <option value="Delhi">Delhi</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jharkhand">Jharkhand</option>
                       <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                      <option value="Delhi (NCT)">Delhi (NCT)</option>
+                      <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                      <option value="Ladakh">Ladakh</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Puducherry">Puducherry</option>
                       <option value="Other">Other</option>
                     </select>
 
@@ -488,9 +579,42 @@ const Form = () => {
                       className="w-full p-2 bg-white border border-gray-300  rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm "
                     >
                       <option value="">Native State / UT</option>
-                      <option value="Madhya Pradesh">Madhya Pradesh</option>
-                      <option value="Delhi">Delhi</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jharkhand">Jharkhand</option>
                       <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                      <option value="Delhi (NCT)">Delhi (NCT)</option>
+                      <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                      <option value="Ladakh">Ladakh</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Puducherry">Puducherry</option>
                       <option value="Other">Other</option>
                     </select>
 
@@ -522,7 +646,7 @@ const Form = () => {
                   </button>
                 </div>
               </AccordionSection>
-            </div>  
+            </div>
 
             <div id="section-4">
               <AccordionSection
@@ -617,18 +741,7 @@ const Form = () => {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Natural Beauty Shot (No make-up)
-                    </label>
-                    <input
-                      type="file"
-                      name="naturalBeautyPhoto"
-                      onChange={handleInputChange}
-                      accept=".jpg,.jpeg,.png"
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                    />
-                  </div>
+
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">How did you hear about us?</label>
@@ -638,7 +751,7 @@ const Form = () => {
                       value={formData.hearAboutUs}
                       onChange={handleInputChange}
                       placeholder="e.g., Social Media, Friend, Advertisement"
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 placeholder-gray-400 "
                     />
                   </div>
                 </div>

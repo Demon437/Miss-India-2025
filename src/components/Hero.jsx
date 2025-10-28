@@ -1,8 +1,11 @@
 // ...existing code...
-import React from "react";
+import React, { useRef } from "react";
 import showreel from "../assets/15 sec website showreel.mp4";
+import VariableProximity from "./VariableProximity";
 
 export default function Hero() {
+    const containerRef = useRef(null);
+
     return (
         <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
             {/* Background video as a cover backdrop */}
@@ -26,6 +29,7 @@ export default function Hero() {
 
             {/* Dark transparent overlay with centered heading, subheading and CTA */}
             <div
+                ref={containerRef}
                 style={{
                     position: "absolute",
                     inset: 0,
@@ -40,13 +44,24 @@ export default function Hero() {
                 <div style={{ textAlign: "center", color: "#fff", maxWidth: "1200px", padding: "0 1rem" }}>
                     <h1
                         style={{
-                            fontSize: "clamp(1.5rem, 4.5vw, 3rem)",
-                            lineHeight: 1.1,
                             margin: 0,
                             fontWeight: "700",
                         }}
                     >
-                        Crafted Events, Classy Celebrations, Timeless Memories
+                        <VariableProximity
+                            label={"Crafted Events, Classy Celebrations, Timeless Memories"}
+                            className={"hero-proximity"}
+                            fromFontVariationSettings={"'wght' 400, 'opsz' 9"}
+                            toFontVariationSettings={"'wght' 1000, 'opsz' 40"}
+                            containerRef={containerRef}
+                            radius={140}
+                            falloff="linear"
+                            style={{
+                                display: "inline-block",
+                                fontSize: "clamp(1.5rem, 4.5vw, 3rem)",
+                                lineHeight: 1.1,
+                            }}
+                        />
                     </h1>
 
                     <p

@@ -73,12 +73,7 @@ const Home = () => {
 <div id="about" className="mt-10">
             < OurWorld />
           </div>
-
-
-          <div id="about" className="mt-10">
-            < Gallery />
-          </div>
-
+{/* 
 
           <div id="philosophy" className="mt-12">
             <ClientsSection />
@@ -90,9 +85,7 @@ const Home = () => {
 
           <div id='contact' className="mt-12">
             <Testimonials />
-          </div>
-
-
+          </div> */}
 
 
           <div id='contact' className="mt-12">

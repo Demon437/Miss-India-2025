@@ -1,8 +1,15 @@
 import React from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import destWedding from "../assets/Destination Weddings 3.jpg";
 import corp from "../assets/BS Corporate 2.jpg";
 import talent1 from "../assets/BS Talent 1.png";
 import talent2 from "../assets/BS Talent 2.jpg";
+
+const springConfig = {
+  damping: 30,
+  stiffness: 100,
+  mass: 2
+};
 
 const cards = [
   {
@@ -30,6 +37,99 @@ const cards = [
     desc: "Meetings, incentives, conferences and exhibitions with meticulous planning.",
   },
 ];
+
+const Card = ({ title, img, alt, desc }) => {
+  const rotateX = useSpring(0, springConfig);
+  const rotateY = useSpring(0, springConfig);
+  const scale = useSpring(1, springConfig);
+
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const rotateXValue = ((mouseY - height / 2) / height) * -10;
+    const rotateYValue = ((mouseX - width / 2) / width) * 10;
+
+    rotateX.set(rotateXValue);
+    rotateY.set(rotateYValue);
+  };
+
+  const handleMouseEnter = () => {
+    scale.set(1.05);
+  };
+
+  const handleMouseLeave = () => {
+    scale.set(1);
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <motion.article
+      role="listitem"
+      tabIndex="0"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        gap: "0.75rem",
+        padding: "1.25rem",
+        borderRadius: 12,
+        background: "#f8f8f8",
+        boxShadow: "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)",
+        height: "100%",
+        transformStyle: "preserve-3d",
+        perspective: "1000px",
+        rotateX,
+        rotateY,
+        scale,
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.img
+        src={img}
+        alt={alt}
+        style={{
+          width: 200,
+          height: 180,
+          borderRadius: 8,
+          objectFit: "cover",
+          flex: "0 0 auto",
+          display: "block",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+          transformStyle: "preserve-3d",
+          transform: "translateZ(20px)",
+        }}
+      />
+      <motion.h3
+        style={{
+          margin: "0.4rem 0 0 0",
+          fontSize: "1.05rem",
+          color: "#111",
+          transform: "translateZ(30px)"
+        }}
+      >
+        {title}
+      </motion.h3>
+      <motion.p
+        style={{
+          margin: "0.4rem 0 0 0",
+          color: "#555",
+          fontSize: ".95rem",
+          transform: "translateZ(25px)"
+        }}
+      >
+        {desc}
+      </motion.p>
+    </motion.article>
+  );
+};
 
 export default function Highlight() {
   return (
@@ -75,67 +175,11 @@ export default function Highlight() {
             gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
             gap: "1rem",
             alignItems: "stretch",
-            gridAutoRows: "1fr", // <-- ensure each grid cell / row gets equal height
+            gridAutoRows: "1fr",
           }}
         >
-        
           {cards.map((c) => (
-            <article
-              key={c.title}
-              role="listitem"
-              tabIndex="0"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                gap: "0.75rem",
-                padding: "1.25rem",
-                borderRadius: 12,
-                background: "#f8f8f8",
-                boxShadow: "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)",
-                transition: "transform 180ms cubic-bezier(.2,.8,.2,1), box-shadow 180ms cubic-bezier(.2,.8,.2,1)",
-                cursor: "default",
-                height: "100%", // <-- fill the grid row so all cards match height
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-8px)";
-                e.currentTarget.style.boxShadow =
-                  "0 20px 50px rgba(15,15,15,0.18), 0 8px 20px rgba(15,15,15,0.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)";
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.transform = "translateY(-8px)";
-                e.currentTarget.style.boxShadow =
-                  "0 20px 50px rgba(15,15,15,0.18), 0 8px 20px rgba(15,15,15,0.08)";
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)";
-              }}
-            >
-              <img
-                src={c.img}
-                alt={c.alt}
-                // fixed rendered size so all cards show same image height
-                style={{
-                  width: 200,           // enforce consistent width (px)
-                  height: 180,          // enforce consistent height (px)
-                  borderRadius: 8,
-                  objectFit: "cover",   // crop to fit the frame
-                  flex: "0 0 auto",
-                  display: "block",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
-                }}
-              />
-
-
-              <h3 style={{ margin: "0.4rem 0 0 0", fontSize: "1.05rem", color: "#111" }}>{c.title}</h3>
-              <p style={{ margin: "0.4rem 0 0 0", color: "#555", fontSize: ".95rem" }}>{c.desc}</p>
-            </article>
+            <Card key={c.title} {...c} />
           ))}
         </div>
       </div>
