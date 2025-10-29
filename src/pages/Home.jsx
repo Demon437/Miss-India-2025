@@ -48,7 +48,7 @@ const Home = () => {
 
       {/* Form view */}
       {showForm && (
-        <div className="mt-20">
+        <div >
           <Form />
         </div>
       )}

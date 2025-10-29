@@ -54,10 +54,15 @@ export default function About() {
                     margin: "0",
                     fontWeight: 700
                 }}>About Us</h1>
-                <div style={{ display: "flex", width: "100%", margin: 0 }}>
+                <div style={{
+                    display: "flex",
+                    width: "100%",
+                    margin: 0,
+                    flexDirection: window.innerWidth <= 768 ? "column" : "row" // Add responsive flexDirection
+                }}>
                     <img src={aboutImage} alt="About Bright Stage" style={{
-                        width: "50%",
-                        height: "auto", // Changed from fixed 500px to auto
+                        width: window.innerWidth <= 768 ? "100%" : "50%", // Responsive width
+                        height: "auto",
                         objectFit: "cover",
                         alignSelf: "center" // Added to vertically align with content
                     }} />

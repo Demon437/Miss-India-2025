@@ -7,7 +7,7 @@ import './Form.css'; // <-- added stylesheet import
 
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
-    <div className="mb-6">
+    <div className="mb-6 ">
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -127,7 +127,7 @@ const Form = () => {
   };
 
   return (
-    <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
+    <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500 mt-20">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="bg-white rounded-lg p-6 shadow-lg border border-oldGold-500/30">
           <h1 className="text-4xl font-bold text-center mb-6 text-[#d6ac45] font-display">

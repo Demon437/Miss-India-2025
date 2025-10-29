@@ -1,133 +1,101 @@
+/* Base styles */
 .cards-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    justify-content: space-around;
     padding: 2rem;
-    background: white;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .card {
-    background: #d6ac45;
+    flex: 1;
+    min-width: 250px;
     padding: 2rem;
-    border-radius: 12px;
-    color: black;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    animation: fadeIn 0.8s ease-out;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* 👈 default soft shadow */
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(214, 172, 69, 0.4); /* 👈 deeper golden glow */
-}
-
-.card h2 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-}
-
-.card p {
-    margin: 0;
-    line-height: 1.6;
-}
-
-.vision-card {
-    animation-delay: 0.2s;
-}
-
-.mission-card {
-    animation-delay: 0.4s;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* For mobile responsiveness */
-@media (max-width: 768px) {
-    .cards-container {
-        grid-template-columns: 1fr;
-    }
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .stats-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                url('../assets/stats-bg.jpg');
-    background-size: cover;
-    background-position: center;
     padding: 4rem 2rem;
     text-align: center;
-    color: white;
-}
-
-.stats-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    font-weight: 600;
+    background-color: #f8f9fa;
 }
 
 .stats-container {
     display: flex;
     justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .stat-item {
+    flex: 1;
+    min-width: 200px;
     padding: 1rem;
-    animation: fadeInUp 0.8s ease-out;
 }
 
-.stat-item h3 {
-    font-size: 3.5rem;
-    color: #d6ac45;
-    margin: 0;
-    font-weight: 700;
-}
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    /* Main content */
+   
 
-.stat-item p {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    opacity: 0.9;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+    h1 {
+        font-size: 2rem !important;
+        padding: 1.5rem 0 !important;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-@media (max-width: 768px) {
-    .stats-container {
+    /* Text content */
+    div[style*="flex: 1"] {
+        padding: 1rem !important;
+    }
+
+    p {
+        font-size: 1rem !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* Cards */
+    .cards-container {
         flex-direction: column;
-        gap: 2rem;
+        padding: 1rem;
     }
-    
+
+    .card {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    /* Stats section */
+    .stats-section {
+        padding: 2rem 1rem;
+    }
+
     .stats-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .stat-item {
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-item h3 {
         font-size: 2rem;
     }
 }
 
-.player-spinner {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height: 300px; /* adjust */
-    background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-    color: #fff;
-    font-weight:600;
-    border-radius: 8px;
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    .stats-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .stat-item h3 {
+        font-size: 1.75rem;
+    }
 }
