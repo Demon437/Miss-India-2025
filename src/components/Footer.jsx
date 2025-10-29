@@ -11,6 +11,7 @@ const Footer = ({ onNavigateSection }) => {
             onNavigateSection(sectionId);
         }
     };
+
     return (
         <footer className="bg-gray-800 text-white py-8">
             <div className="container mx-auto px-4">
@@ -23,8 +24,7 @@ const Footer = ({ onNavigateSection }) => {
                         </p>
                     </div>
 
-                    {/* Quick Links */
-                    }
+                    {/* Quick Links */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-2">
@@ -35,25 +35,24 @@ const Footer = ({ onNavigateSection }) => {
                         </ul>
                     </div>
 
-                    {/* Services */}
+                    {/* Services - Static */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Services</h4>
-                        <ul className="space-y-1 text-md leading-relaxed">
-                            <li><a href="/weddings" className="hover:text-gray-300 transition-colors duration-200">Destination Weddings</a></li>
-                            <li><a href="/decor" className="hover:text-gray-300 transition-colors duration-200">Designer Décor & Bridal Entries</a></li>
-                            <li><a href="/events" className="hover:text-gray-300 transition-colors duration-200">Engagements & Anniversaries</a></li>
-                            <li><a href="/parties" className="hover:text-gray-300 transition-colors duration-200">Family Galas & Private Parties</a></li>
-                            <li><a href="/celebrity" className="hover:text-gray-300 transition-colors duration-200">Celebrity Performances</a></li>
-                            <li><a href="/planning" className="hover:text-gray-300 transition-colors duration-200">Wedding Planning & Coordination</a></li>
+                        <ul className="space-y-1 text-md leading-relaxed text-white-400">
+                            <li><p className=" duration-200 cursor-default">Destination Weddings</p></li>
+                            <li><p className="transition-colors duration-200 cursor-default">Designer Décor & Bridal Entries</p></li>
+                            <li><p className="transition-colors duration-200 cursor-default">Engagements & Anniversaries</p></li>
+                            <li><p className="transition-colors duration-200 cursor-default">Family Galas & Private Parties</p></li>
+                            <li><p className="transition-colors duration-200 cursor-default">Celebrity Performances</p></li>
+                            <li><p className="transition-colors duration-200 cursor-default">Wedding Planning & Coordination</p></li>
                         </ul>
-
                     </div>
 
                     {/* Contact & Social */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
                         <p className="text-gray-400 mb-2">Email: missmp@brightstage.co.in</p>
-                        <p className="text-gray-400 mb-4">Phone:+91 7000939353</p>
+                        <p className="text-gray-400 mb-4">Phone: +91 7000939353</p>
                         <div className="flex space-x-4">
                             <a href="#" className="hover:text-gray-300"><i className="fab fa-facebook-f"></i></a>
                             <a href="#" className="hover:text-gray-300"><i className="fab fa-twitter"></i></a>
