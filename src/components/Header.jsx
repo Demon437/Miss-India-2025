@@ -56,7 +56,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
               onClick={() => scrollToSection('services')}
               className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
             >
-              Services
+              Expertise
             </button>
             <button
               onClick={() => scrollToSection('about')}
@@ -71,44 +71,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
               Contact
             </button>
 
-            {/* More Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setIsMoreOpen(!isMoreOpen)}
-                className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-oldGold-500/10 flex items-center"
-              >
-                More ▼
-              </button>
-
-              {isMoreOpen && (
-                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-oldGold-500/20">
-                  <button
-                    onClick={() => scrollToSection('clients')}
-                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
-                  >
-                    Clients
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('team')}
-                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
-                  >
-                    Team
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('testimonials')}
-                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
-                  >
-                    Testimonials
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('commitment')}
-                    className="w-full text-left px-4 py-2 text-celtic-500 hover:text-oldGold-500 hover:bg-oldGold-500/10"
-                  >
-                    Commitment
-                  </button>
-                </div>
-              )}
-            </div>
+        
           </nav>
         </div>
       </div>

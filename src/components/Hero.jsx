@@ -101,45 +101,7 @@ export default function Hero({ onDiscoverMore }) {
                         Where every detail turns into a magical experience.
                     </p>
 
-                    <a
-                        href="#"
-                        aria-label="Discover more about our events"
-                        style={{
-                            display: "inline-block",
-                            padding: "0.75rem 1.25rem",
-                            borderRadius: "6px",
-                            fontWeight: 600,
-                            color: "#fff",
-                            backgroundColor: "#d6ac45",
-                            boxShadow: "0 6px 18px rgba(0,0,0,0.35)",
-                            textDecoration: "none",
-                            transition: "transform 150ms ease, filter 150ms ease",
-                            cursor: "pointer",
-                        }}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            if (typeof onDiscoverMore === 'function') {
-                                onDiscoverMore();
-                            } else {
-                                const el = document.getElementById('ourworld');
-                                if (el) {
-                                    const headerHeight = 64;
-                                    const y = el.offsetTop - headerHeight;
-                                    window.scrollTo({ top: y, behavior: 'smooth' });
-                                }
-                            }
-                        }}
-                        onMouseOver={(e) => {
-                            e.currentTarget.style.transform = "translateY(-3px)";
-                            e.currentTarget.style.filter = "brightness(0.95)";
-                        }}
-                        onMouseOut={(e) => {
-                            e.currentTarget.style.transform = "translateY(0)";
-                            e.currentTarget.style.filter = "brightness(1)";
-                        }}
-                    >
-                        Discover More
-                    </a>
+                
                 </div>
             </div>
         </section>
