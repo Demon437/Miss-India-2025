@@ -17,30 +17,115 @@
 }
 
 .stats-section {
-    padding: 4rem 2rem;
+    background: linear-gradient(to right, #1a1a1a, #333);
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d6ac45, transparent);
+}
+
+.stats-section h2 {
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    font-family: 'Playfair Display', serif;
     text-align: center;
-    background-color: #f8f9fa;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .stats-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .stat-item {
-    flex: 1;
-    min-width: 200px;
-    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(214, 172, 69, 0.3);
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    background: linear-gradient(45deg, transparent, rgba(214, 172, 69, 0.1));
+    z-index: 0;
+}
+
+.stat-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.stat-item h3 {
+    color: #d6ac45;
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+}
+
+.stat-item p {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+/* Vision and Mission Cards */
+.vision-card, .mission-card {
+    background-color: #d6ac45;
+    color: black;  /* Making text white for better contrast */
+}
+
+.vision-card h2, .mission-card h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    color: black;
+    text-align: center;
+}
+
+.vision-card p, .mission-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    color: black;
+    font-weight: 400;
 }
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
     /* Main content */
-   
-
     h1 {
         font-size: 2rem !important;
         padding: 1.5rem 0 !important;
@@ -99,3 +184,6 @@
         font-size: 1.75rem;
     }
 }
+
+
+

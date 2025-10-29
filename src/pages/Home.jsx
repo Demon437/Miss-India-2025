@@ -69,12 +69,10 @@ const Home = () => {
             <About />
           </div>
 
-          <div id="highlight" >
-            <Highlight />
-          </div>
+        
 
 
-          <div id="about" className="mt-10">
+          <div id="about" >
             < OurWorld />
           </div>
           {/* 

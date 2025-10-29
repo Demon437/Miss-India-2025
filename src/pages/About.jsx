@@ -97,12 +97,12 @@ export default function About() {
                 <div className="cards-container">
                     <div className="card vision-card">
                         <h2>Our Vision</h2>
-                        <p>"To illuminate every celebration with elegance, brilliance, and unforgettable experiences."</p>
+                        <p>To illuminate every celebration with elegance, brilliance, and unforgettable experiences.</p>
                     </div>
 
                     <div className="card mission-card ">
                         <h2>Our Mission</h2>
-                        <p>"Crafting flawlessly executed events where every moment shines, every story captivates, and memories last a lifetime."</p>
+                        <p>Crafting flawlessly executed events where every moment shines, every story captivates, and memories last a lifetime.</p>
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@ export default function About() {
                         <div className="stat-item">
                             <h3>
                                 {isVisible && (
-                                    <CountUp key={key} start={0} end={10} duration={2.5} suffix="K" />
+                                    <CountUp key={key} start={0} end={10} duration={2.5} suffix="k" />
                                 )}
                             </h3>
                             <p>Experiences Created</p>
