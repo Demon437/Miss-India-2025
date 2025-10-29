@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from '../assets/WhatsApp Image 2025-10-15 at 14.51.55_3ae3ffed.jpg'
 
-const Header = ({ onLogoClick }) => {
+const Header = ({ onLogoClick, onNavigateSection }) => {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
@@ -14,6 +14,8 @@ const Header = ({ onLogoClick }) => {
         top: elementPosition,
         behavior: 'smooth'
       });
+    } else if (typeof onNavigateSection === 'function') {
+      onNavigateSection(sectionId);
     }
     setIsMoreOpen(false);
   };

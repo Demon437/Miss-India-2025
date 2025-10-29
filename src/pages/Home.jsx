@@ -22,9 +22,9 @@ import OurWorld from '../components/OurWorld';
 const Home = () => {
   const [showMainContent, setShowMainContent] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [pendingSection, setPendingSection] = useState(null);
 
   const handleLogoClick = () => {
-    // changed: only show the requested sections when logo clicked
     setShowMainContent(true);
     setShowForm(false);
   };
@@ -34,10 +34,28 @@ const Home = () => {
     setShowMainContent(false);
   };
 
+  const handleNavigateSection = (sectionId) => {
+    setShowMainContent(true);
+    setShowForm(false);
+    setPendingSection(sectionId);
+  };
+
+  React.useEffect(() => {
+    if (showMainContent && pendingSection) {
+      const element = document.getElementById(pendingSection);
+      if (element) {
+        const headerHeight = 64;
+        const elementPosition = element.offsetTop - headerHeight;
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+        setPendingSection(null);
+      }
+    }
+  }, [showMainContent, pendingSection]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-ecruWhite-500 via-oldGold-200 to-ecruWhite-500 text-celtic-500">
       {/* Header will always be visible */}
-      <Header onLogoClick={handleLogoClick} />
+      <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigateSection} />
 
       {/* Initial view - only GotoForm */}
       {!showMainContent && !showForm && (
@@ -57,7 +75,7 @@ const Home = () => {
       {showMainContent && (
         <>
           <div id="home" className="mt-10">
-            < Hero />
+            < Hero onDiscoverMore={() => handleNavigateSection('ourworld')} />
           </div>
 
 
@@ -68,14 +86,14 @@ const Home = () => {
           <div id='about'>
             <About />
           </div>
-          <div id="about" >
+          <div id="ourworld" >
             < OurWorld />
           </div>
          
 
 
           <div id='contact'>
-            <Footer />
+            <Footer onNavigateSection={handleNavigateSection} />
           </div>
         </>
       )}

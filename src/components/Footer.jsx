@@ -1,6 +1,16 @@
 import React from 'react';
 
-const Footer = () => {
+const Footer = ({ onNavigateSection }) => {
+    const go = (sectionId) => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+            const headerHeight = 64;
+            const y = el.offsetTop - headerHeight;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        } else if (typeof onNavigateSection === 'function') {
+            onNavigateSection(sectionId);
+        }
+    };
     return (
         <footer className="bg-gray-800 text-white py-8">
             <div className="container mx-auto px-4">
@@ -13,14 +23,15 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Quick Links */
+                    }
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-2">
-                            <li><a href="/" className="hover:text-gray-300">Home</a></li>
-                            <li><a href="/events" className="hover:text-gray-300">Events</a></li>
-                            <li><a href="/services" className="hover:text-gray-300">Services</a></li>
-                            <li><a href="/about" className="hover:text-gray-300">About Us</a></li>
+                            <li><button onClick={() => go('home')} className="hover:text-gray-300">Home</button></li>
+                            <li><button onClick={() => go('services')} className="hover:text-gray-300">Services</button></li>
+                            <li><button onClick={() => go('about')} className="hover:text-gray-300">About Us</button></li>
+                            <li><button onClick={() => go('contact')} className="hover:text-gray-300">Contact</button></li>
                         </ul>
                     </div>
 

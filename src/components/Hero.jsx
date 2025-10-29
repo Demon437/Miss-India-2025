@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import showreel from "../assets/website-showreel.mp4";
 import VariableProximity from "./VariableProximity";
 
-export default function Hero() {
+export default function Hero({ onDiscoverMore }) {
     const containerRef = useRef(null);
     const videoRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -102,7 +102,7 @@ export default function Hero() {
                     </p>
 
                     <a
-                        href="#discover"
+                        href="#"
                         aria-label="Discover more about our events"
                         style={{
                             display: "inline-block",
@@ -115,6 +115,19 @@ export default function Hero() {
                             textDecoration: "none",
                             transition: "transform 150ms ease, filter 150ms ease",
                             cursor: "pointer",
+                        }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            if (typeof onDiscoverMore === 'function') {
+                                onDiscoverMore();
+                            } else {
+                                const el = document.getElementById('ourworld');
+                                if (el) {
+                                    const headerHeight = 64;
+                                    const y = el.offsetTop - headerHeight;
+                                    window.scrollTo({ top: y, behavior: 'smooth' });
+                                }
+                            }
                         }}
                         onMouseOver={(e) => {
                             e.currentTarget.style.transform = "translateY(-3px)";
