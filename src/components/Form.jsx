@@ -332,19 +332,22 @@ const Form = () => {
 
 
                   {/* Contact Details Row */}
-                  <div>
-                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Contact Details. <span className="text-red-500">*</span>
-                    </label>
-                    <input placeholder='Mobile No.'
-                      type="tel"
-                      name="Mobile"
-                      value={formData.mobile}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-2 bg-white border border-gray-300  rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm placeholder-gray-400"
-                    />
-                  </div>
+                {/* Contact Details Row */}
+<div>
+  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+    Contact Details <span className="text-red-500">*</span>
+  </label>
+  <input
+    placeholder="Mobile No."
+    type="tel"
+    name="mobile" // <-- lowercase
+    value={formData.mobile} // <-- must match the state key
+    onChange={handleInputChange}
+    required
+    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm placeholder-gray-400"
+  />
+</div>
+
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6"></label>
