@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../assets/logo.jpg";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Home from "./Home";
 
 const GotoForm = ({ onFormClick }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+            const element = document.getElementById(location.state.scrollTo);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, [location]);
+
+    const handleNavigation = (section) => {
+        navigate('/', { state: { section } });
+    };
+
     return (
-        <div className="min-h-screen bg-[#fdfdfd] flex justify-center items-start p-6">
-                     <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-25">
+        <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center">
+         
+          
+
+            {/* Existing Form Content */}
+            <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-6">
 
                 {/* Top Button - show absolute on md+, stacked full-width on mobile */}
                 <div className="hidden md:block absolute md:top-48 top-6 right-6">

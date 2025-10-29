@@ -68,26 +68,10 @@ const Home = () => {
           <div id='about'>
             <About />
           </div>
-
-        
-
-
           <div id="about" >
             < OurWorld />
           </div>
-          {/* 
-
-          <div id="philosophy" className="mt-12">
-            <ClientsSection />
-          </div>
-
-          <div id="partnership" className="mt-12">
-            <TeamSection />
-          </div>
-
-          <div id='contact' className="mt-12">
-            <Testimonials />
-          </div> */}
+         
 
 
           <div id='contact'>
