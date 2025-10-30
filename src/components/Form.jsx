@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import qrImage from '../assets/Screenshot 2025-10-23 173612.png';
 import closeUpRef from '../assets/Close-Up.jpg';
 import midLengthRef from '../assets/Mid-length.jpg';
@@ -7,7 +7,7 @@ import './Form.css'; // <-- added stylesheet import
 
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
-    <div className="mb-6 ">
+    <div className="mb-6">
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -74,8 +74,6 @@ const Form = () => {
     dateOfBirth: '',
     age: '',
     height: '',
-    heightFeet: '',       // added
-    heightInches: '',     // added
     mobile: '',
     alternateMobile: '',
     email: '',
@@ -94,6 +92,24 @@ const Form = () => {
     declaration: false
   });
 
+  // submission UI state
+  const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // auto-hide toast messages after a short delay
+  useEffect(() => {
+    if (!successMessage) return undefined;
+    const t = setTimeout(() => setSuccessMessage(''), 4000);
+    return () => clearTimeout(t);
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (!errorMessage) return undefined;
+    const t = setTimeout(() => setErrorMessage(''), 5000);
+    return () => clearTimeout(t);
+  }, [errorMessage]);
+
   const handleInputChange = (e) => {
     const { name, value, files, type, checked } = e.target;
     setFormData(prev => ({
@@ -105,7 +121,6 @@ const Form = () => {
   const handleNationalityChange = (e) => {
     setFormData({ ...formData, nationality: e.target.value });
   };
-
   // handle feet-specific rules for inches
   const handleHeightFeetChange = (e) => {
     const feet = e.target.value;
@@ -120,15 +135,141 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Registration submitted successfully! We will contact you soon.');
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    try {
+      // client-side required fields validation
+      if (!formData.firstName || !formData.lastName || !formData.mobile || !formData.birthDate || !formData.birthMonth || !formData.birthYear) {
+        setErrorMessage('Please fill First name, Last name, Mobile and complete Date of Birth.');
+        return;
+      }
+
+      setSubmitting(true);
+
+      const url = 'http://127.0.0.1:8000/api/contestants/';
+      const payload = new FormData();
+
+      // Map component state to API field names (snake_case expected by backend)
+      if (formData.firstName) payload.append('first_name', formData.firstName);
+      if (formData.middleName) payload.append('middle_name', formData.middleName);
+      if (formData.lastName) payload.append('last_name', formData.lastName);
+
+      // build date_of_birth from birthYear, birthMonth, birthDate if available
+      const bd = formData.birthDate;
+      const bm = formData.birthMonth;
+      const by = formData.birthYear;
+      if (bd && bm && by) {
+        const mm = String(bm).padStart(2, '0');
+        const dd = String(bd).padStart(2, '0');
+        payload.append('date_of_birth', `${by}-${mm}-${dd}`);
+      }
+
+      if (formData.age) payload.append('age', formData.age);
+      if (formData.heightFeet) payload.append('height_feet', formData.heightFeet);
+      if (formData.heightInches) payload.append('height_inches', formData.heightInches);
+
+      // contact
+      if (formData.mobile) payload.append('mobile_no', formData.mobile);
+      if (formData.alternateMobile) payload.append('alternate_mobile', formData.alternateMobile);
+      if (formData.email) payload.append('email', formData.email);
+
+      // other fields (convert to snake_case expected by API)
+      if (formData.nationality) payload.append('nationality', formData.nationality);
+      if (formData.instagram) payload.append('instagram_profile', formData.instagram);
+
+      if (formData.birthState) payload.append('birth_state', formData.birthState);
+      if (formData.birthStatePreference) payload.append('birth_state_preference', formData.birthStatePreference);
+      if (formData.currentState) payload.append('current_state', formData.currentState);
+      if (formData.currentStatePreference) payload.append('current_state_preference', formData.currentStatePreference);
+      if (formData.nativeState) payload.append('native_state', formData.nativeState);
+      if (formData.nativeStatePreference) payload.append('native_state_preference', formData.nativeStatePreference);
+      if (formData.hearAboutUs) payload.append('how_did_you_hear', formData.hearAboutUs);
+
+      // boolean -> backend expects terms_accepted
+      payload.append('terms_accepted', formData.declaration ? 'true' : 'false');
+
+      // file fields mapping (frontend state key -> backend field name)
+      const fileMap = {
+        aadharCard: 'aadhar_card',
+        closeUpPhoto: 'close_up_photo',
+        fullLengthPhoto: 'full_length_photo',
+        midLengthPhoto: 'mid_length_photo',
+        naturalLookPhoto: 'natural_look_photo',
+        naturalBeautyPhoto: 'natural_look_makeup_photo',
+        paymentScreenshot: 'payment_screenshot'
+      };
+      Object.entries(fileMap).forEach(([key, backendName]) => {
+        const file = formData[key];
+        if (file instanceof File) payload.append(backendName, file, file.name);
+      });
+
+      const res = await fetch(url, {
+        method: 'POST',
+        body: payload
+      });
+
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setSuccessMessage('Registration submitted successfully! We will contact you soon.');
+        // reset form data (keep simple)
+        setFormData({
+          firstName: '',
+          middleName: '',
+          lastName: '',
+          dateOfBirth: '',
+          age: '',
+          height: '',
+          mobile: '',
+          alternateMobile: '',
+          email: '',
+          nationality: '',
+          instagram: '',
+          nativeState: '',
+          currentState: '',
+          aadharCard: null,
+          closeUpPhoto: null,
+          fullLengthPhoto: null,
+          midLengthPhoto: null,
+          naturalLookPhoto: null,
+          naturalBeautyPhoto: null,
+          hearAboutUs: '',
+          paymentScreenshot: null,
+          declaration: false
+        });
+        console.log('Server response:', data);
+      } else {
+        let errText = `Request failed with status ${res.status}`;
+        try {
+          const json = await res.json();
+          if (json && typeof json === 'object') errText = JSON.stringify(json);
+        } catch (err2) {
+          console.warn('Failed to parse error body', err2);
+        }
+        setErrorMessage(errText);
+        console.error('Submission error:', errText);
+      }
+    } catch (err) {
+      setErrorMessage(err.message || 'An unexpected error occurred');
+      console.error(err);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500 mt-20">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
+      {/* Toast / transient messages */}
+      {(successMessage || errorMessage) && (
+        <div className="fixed top-6 right-6 z-50">
+          <div className={`max-w-xs px-4 py-3 rounded shadow-lg text-white break-words ${successMessage ? 'bg-green-600' : 'bg-red-600'}`} role="status" aria-live="polite">
+            {successMessage || errorMessage}
+          </div>
+        </div>
+      )}
+      <div className="container mx-auto px-4 max-w-5xl mt-20">
         <div className="bg-white rounded-lg p-6 shadow-lg border border-oldGold-500/30">
           <h1 className="text-4xl font-bold text-center mb-6 text-[#d6ac45] font-display">
             FEMINA MISS INDIA MP-2025
@@ -137,6 +278,16 @@ const Form = () => {
 
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {successMessage && (
+              <div className="text-center">
+                <p className="text-green-600 font-medium">{successMessage}</p>
+              </div>
+            )}
+            {errorMessage && (
+              <div className="text-center">
+                <p className="text-red-600 font-medium break-words">{errorMessage}</p>
+              </div>
+            )}
 
             <div id="section-1">
               <AccordionSection
@@ -248,7 +399,9 @@ const Form = () => {
                     <div className="flex gap-2">
                       <select
                         name="birthDate"
-                        className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none"
+                        value={formData.birthDate || ''}
+                        onChange={handleInputChange}
+                        className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 text-sm focus:border-oldGold-500 focus:outline-none"
                       >
                         <option value="">Date</option>
                         {[...Array(31)].map((_, i) => (
@@ -257,6 +410,8 @@ const Form = () => {
                       </select>
                       <select
                         name="birthMonth"
+                        value={formData.birthMonth || ''}
+                        onChange={handleInputChange}
                         className="w-24 p-1 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Month</option>
@@ -266,6 +421,8 @@ const Form = () => {
                       </select>
                       <select
                         name="birthYear"
+                        value={formData.birthYear || ''}
+                        onChange={handleInputChange}
                         className="w-24 p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none text-sm"
                       >
                         <option value="">Year</option>
@@ -293,6 +450,7 @@ const Form = () => {
                     />
                   </div>
 
+                  {/* Height Field */}
                   {/* Height Field */}
                   <div className="flex-1">
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">
@@ -330,24 +488,20 @@ const Form = () => {
                     </div>
                   </div>
 
-
                   {/* Contact Details Row */}
-                {/* Contact Details Row */}
-<div>
-  <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-    Contact Details <span className="text-red-500">*</span>
-  </label>
-  <input
-    placeholder="Mobile No."
-    type="tel"
-    name="mobile" // <-- lowercase
-    value={formData.mobile} // <-- must match the state key
-    onChange={handleInputChange}
-    required
-    className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm placeholder-gray-400"
-  />
-</div>
-
+                  <div>
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Contact Details. <span className="text-red-500">*</span>
+                    </label>
+                    <input placeholder='Mobile No.'
+                      type="tel"
+                      name="mobile"
+                      value={formData.mobile}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full p-2 bg-white border border-gray-300  rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm placeholder-gray-400"
+                    />
+                  </div>
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6"></label>
@@ -482,7 +636,9 @@ const Form = () => {
                       <option value="Lakshadweep">Lakshadweep</option>
                       <option value="Puducherry">Puducherry</option>
                       <option value="Other">Other</option>
+
                     </select>
+
                     <div className="mt-3 flex items-center gap-4">
                       <select
                         name="birthStatePreference"
@@ -619,6 +775,7 @@ const Form = () => {
                       <option value="Lakshadweep">Lakshadweep</option>
                       <option value="Puducherry">Puducherry</option>
                       <option value="Other">Other</option>
+
                     </select>
 
                     <div className="mt-3 flex items-center gap-4">
@@ -744,7 +901,18 @@ const Form = () => {
                     </div>
                   </div>
 
-
+                  <div>
+                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
+                      Natural Beauty Shot (No make-up)
+                    </label>
+                    <input
+                      type="file"
+                      name="naturalBeautyPhoto"
+                      onChange={handleInputChange}
+                      accept=".jpg,.jpeg,.png"
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
+                    />
+                  </div>
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">How did you hear about us?</label>
@@ -754,7 +922,7 @@ const Form = () => {
                       value={formData.hearAboutUs}
                       onChange={handleInputChange}
                       placeholder="e.g., Social Media, Friend, Advertisement"
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 placeholder-gray-400 "
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
                   </div>
                 </div>
@@ -816,9 +984,10 @@ const Form = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
+                  disabled={submitting}
+                  className={`font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 text-white shadow-md ${submitting ? 'bg-yellow-400 cursor-wait' : 'bg-yellow-600 hover:bg-yellow-700'}`}
                 >
-                  Submit Registration
+                  {submitting ? 'Submitting...' : 'Submit Registration'}
                 </button>
               </div>
             </div>

@@ -1,6 +1,52 @@
 import React from "react";
+import googleIcon from '../assets/google.png';
+import {Link, useNavigate } from "react-router-dom";
+const GOOGLE_CLIENT_ID = "407408718192.apps.googleusercontent.com";
 
 const SignIn = () => {
+
+    const navigate = useNavigate();
+
+    const handleContinue = () => {
+        navigate("/signup");
+    };
+
+
+
+const handleGoogleLogin = () => {
+  /* global google */
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleCredentialResponse,
+  });
+
+  google.accounts.id.prompt(); // This opens Google login popup
+};
+
+const handleCredentialResponse = async (response) => {
+  try {
+    const token = response.credential;
+
+    const res = await fetch("https://127.0.0.1:8000/api/user/google/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    });
+
+    const data = await res.json();
+    console.log("Backend Response:", data);
+
+    if (data?.access_token) {
+      localStorage.setItem("access_token", data.access_token);
+      navigate("/signup");
+    }
+
+  } catch (err) {
+    console.log("Google Login Error:", err);
+  }
+};
+
+
     return (
         <div
             style={{
@@ -55,8 +101,11 @@ const SignIn = () => {
                             cursor: "pointer",
                             fontWeight: "bold",
                         }}
-                    >
-                        Sign Up
+                        // onClick={(handleContinue) => navigate("signUp")}
+                        onClick={handleContinue}
+
+                    > 
+                    Sign Up
                     </button>
                 </div>
 
@@ -76,12 +125,14 @@ const SignIn = () => {
                             boxShadow: "0 0 15px rgba(255,255,255,0.2)",
                             cursor: "pointer",
                         }}
+                        onClick={handleGoogleLogin}
                     >
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                            src={googleIcon}
                             alt="Google"
-                            style={{ width: "20px", marginRight: "8px" }}
+                            style={{ width: "30px", marginRight: "8px" }}
                         />
+                        
                         Sign in with Google
                     </button>
                     <p

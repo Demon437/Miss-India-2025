@@ -3,6 +3,9 @@ import logo from "../assets/logo.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Home from "./Home";
 
+
+
+
 const GotoForm = ({ onFormClick }) => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -19,11 +22,14 @@ const GotoForm = ({ onFormClick }) => {
     const handleNavigation = (section) => {
         navigate('/', { state: { section } });
     };
+const HandelSignIn = () => {
+    navigate("/Form");
+};
 
     return (
         <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center">
-         
-          
+
+
 
             {/* Existing Form Content */}
             <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-6">
@@ -32,6 +38,7 @@ const GotoForm = ({ onFormClick }) => {
                 <div className="hidden md:block absolute md:top-48 top-6 right-6">
                     <button
                         onClick={onFormClick}
+                        //  onClick={HandelSignIn}
                         className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form
@@ -119,10 +126,11 @@ const GotoForm = ({ onFormClick }) => {
                 <div className="text-left text-gray-700 text-[15px] mt-8 font-normal ">
                     Thank You!
                 </div>
-                {/* Bottom Button for md+ (already absolute top on md); keep bottom CTA for larger screens too) */}
+             
                 <div className="flex justify-end mt-6">
                     <button
-                        onClick={onFormClick}
+                     onClick={onFormClick}
+                        // onClick={HandelSignIn}
                         className="hidden md:inline-block font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form

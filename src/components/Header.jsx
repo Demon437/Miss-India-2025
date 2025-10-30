@@ -4,6 +4,7 @@ import logoImage from '../assets/WhatsApp Image 2025-10-15 at 14.51.55_3ae3ffed.
 
 const Header = ({ onLogoClick, onNavigateSection }) => {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -18,6 +19,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
       onNavigateSection(sectionId);
     }
     setIsMoreOpen(false);
+    setIsMobileOpen(false);
   };
 
   return (
@@ -43,7 +45,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
             </button>
           </div>
 
-          {/* Navigation Links */}
+          {/* Navigation Links - Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('home')}
@@ -73,7 +75,59 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
 
         
           </nav>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            type="button"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-celtic-500 hover:text-oldGold-500 focus:outline-none focus:ring-2 focus:ring-oldGold-500"
+            aria-label="Open menu"
+            aria-expanded={isMobileOpen}
+            onClick={() => setIsMobileOpen((v) => !v)}
+          >
+            {isMobileOpen ? (
+              // Close icon
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            ) : (
+              // Hamburger icon
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
+        {/* Mobile Menu Panel */}
+        {isMobileOpen && (
+          <div className="md:hidden mt-2 rounded-lg border border-oldGold-500/20 bg-white shadow-lg overflow-hidden">
+            <div className="flex flex-col py-2">
+              <button
+                onClick={() => scrollToSection('home')}
+                className="text-celtic-500 text-left px-4 py-3 hover:bg-oldGold-500/10"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection('services')}
+                className="text-celtic-500 text-left px-4 py-3 hover:bg-oldGold-500/10"
+              >
+                Expertise
+              </button>
+              <button
+                onClick={() => scrollToSection('about')}
+                className="text-celtic-500 text-left px-4 py-3 hover:bg-oldGold-500/10"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="text-celtic-500 text-left px-4 py-3 hover:bg-oldGold-500/10"
+              >
+                Contact
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

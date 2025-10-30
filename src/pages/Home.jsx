@@ -12,11 +12,9 @@ import GotoForm from './GotoForm';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
-import Gallery from './Gallery';
-import ClientsSection from '../components/ClientsSection';
-import TeamSection from '../components/TeamSection';
-import Testimonials from '../components/Testimonials';
+
 import OurWorld from '../components/OurWorld';
+
 
 
 const Home = () => {
@@ -89,12 +87,13 @@ const Home = () => {
           <div id="ourworld" >
             < OurWorld />
           </div>
-         
+
 
 
           <div id='contact'>
             <Footer onNavigateSection={handleNavigateSection} />
           </div>
+
         </>
       )}
     </div>
