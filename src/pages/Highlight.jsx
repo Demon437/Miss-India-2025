@@ -4,7 +4,7 @@ import destWedding from "../assets/Destination Weddings 3.jpg";
 import corp from "../assets/BS Corporate 2.jpg";
 import talent1 from "../assets/BS Talent 1.png";
 import talent2 from "../assets/BS Talent 2.jpg";
-import brightStage from "../assets/About Us Bright stage.jpg";
+import brightStage from "../assets/Nikita_Porwal_Miss_India_2024_1729591164015_1729591173305.webp";
 
 const springConfig = {
   damping: 30,

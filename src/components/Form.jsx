@@ -10,7 +10,7 @@ import Header from "../components/Header";
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
     <div className="mb-6">
-      
+
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -266,7 +266,7 @@ const Form = () => {
 
   const handleNavigateSection = (sectionId) => {
     if (sectionId === 'form') {
-      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { }
       return;
     }
     navigate('/', { state: { section: sectionId } });

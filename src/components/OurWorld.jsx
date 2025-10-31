@@ -5,9 +5,8 @@ import talentImg2 from "../assets/BS Talent 2.jpg";
 import weddings1 from "../assets/BS Weddings 1.jpg";
 import corporateImg1 from "../assets/BS Corporate 1.jpg";
 import csrImg from "../assets/BS CSR.jpg";
-import brightStage from "../assets/About Us Bright stage.jpg";
+import brightStage from "../assets/Nikita_Porwal_Miss_India_2024_1729591164015_1729591173305.webp";
 import "./About.css";
-
 const OurWorld = () => {
     const sections = [
         {
