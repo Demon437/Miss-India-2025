@@ -4,6 +4,7 @@ import destWedding from "../assets/Destination Weddings 3.jpg";
 import corp from "../assets/BS Corporate 2.jpg";
 import talent1 from "../assets/BS Talent 1.png";
 import talent2 from "../assets/BS Talent 2.jpg";
+import brightStage from "../assets/About Us Bright stage.jpg";
 
 const springConfig = {
   damping: 30,
@@ -17,6 +18,12 @@ const cards = [
     img: destWedding,
     alt: "Destination wedding",
     desc: "Bespoke celebrations at dream locations  every moment crafted to perfection.",
+  },
+  {
+    title: "Beauty Pageants & Fashion Shows",
+    img: brightStage,
+    alt: "Beauty pageants and fashion shows",
+    desc: "Where elegance meets excellence.",
   },
   {
     title: "Corporate Events",

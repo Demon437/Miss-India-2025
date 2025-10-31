@@ -40,17 +40,21 @@ export default function About() {
 
   return (
     <main style={{ padding: 0, width: "100%" }}>
-      <section style={{ backgroundColor: "white", width: "100%" }}>
+      <section style={{
+        background: "linear-gradient(135deg, #fffef8, #fdf6e6)",
+        width: "100%",
+      }}
+      >
         <h1 className="section-heading"
-          style={{ 
+          style={{
             textAlign: "center",
             padding: "2rem 0",
             fontSize: "2.5rem",
             color: "#333",
             fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
-            
-            
+
+
           }}
         >
           About Us
@@ -114,37 +118,37 @@ export default function About() {
           </motion.div>
         </div>
 
-{/* ---------- Vision & Mission Cards ---------- */}
-<motion.div 
-  className="cards-container"
-  initial={{ opacity: 0, y: 60 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.9, ease: "easeOut" }}
-  viewport={{ once: false, amount: 0.3 }}
->
-  <motion.div 
-    className="info-card"
-    whileHover={{ scale: 1.05 }}
-    transition={{ type: "spring", stiffness: 150 }}
-  >
-    <h2>Our Vision</h2>
-    <p>To illuminate every celebration with elegance, brilliance, and unforgettable experiences.</p>
-  </motion.div>
+        {/* ---------- Vision & Mission Cards ---------- */}
+        <motion.div
+          className="cards-container"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <motion.div
+            className="info-card"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 150 }}
+          >
+            <h2>Our Vision</h2>
+            <p>To illuminate every celebration with elegance, brilliance, and unforgettable experiences.</p>
+          </motion.div>
 
-  <motion.div 
-    className="info-card"
-    whileHover={{ scale: 1.05 }}
-    transition={{ type: "spring", stiffness: 150 }}
-  >
-    <h2>Our Mission</h2>
-    <p>Crafting flawlessly executed events where every moment shines, every story captivates, and memories last a lifetime.</p>
-  </motion.div>
-</motion.div>
+          <motion.div
+            className="info-card"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 150 }}
+          >
+            <h2>Our Mission</h2>
+            <p>Crafting flawlessly executed events where every moment shines, every story captivates, and memories last a lifetime.</p>
+          </motion.div>
+        </motion.div>
 
 
         {/* ---------- Stats Counter Section ---------- */}
         <div className="stats-section">
-          
+
           <h2>Event Management Services That Turn Ideas into Reality</h2>
 
           <div className="stats-container" ref={statsRef}>

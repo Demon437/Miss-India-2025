@@ -56,7 +56,15 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
   ].map((item) => (
     <button
       key={item.name}
-      onClick={() => scrollToSection(item.id)}
+      onClick={() => {
+        if (item.id === 'femina') {
+          if (typeof onNavigateSection === 'function') onNavigateSection('form');
+          setIsMoreOpen(false);
+          setIsMobileOpen(false);
+        } else {
+          scrollToSection(item.id);
+        }
+      }}
       className="
         relative text-dark font-medium tracking-wide
         px-3 py-1.5 rounded-full text-sm uppercase
@@ -102,6 +110,14 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
                 className="text-celtic-500 text-left px-4 py-3 hover:bg-oldGold-500/10"
               >
                 Home
+              </button>
+              <button
+                onClick={() => {
+                  if (typeof onNavigateSection === 'function') onNavigateSection('form');
+                }}
+                className="text-celtic-500 text-left px-4 py-3 hover:bg-oldGold-500/10"
+              >
+                Femina
               </button>
               <button
                 onClick={() => scrollToSection('services')}

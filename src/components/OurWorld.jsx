@@ -5,6 +5,7 @@ import talentImg2 from "../assets/BS Talent 2.jpg";
 import weddings1 from "../assets/BS Weddings 1.jpg";
 import corporateImg1 from "../assets/BS Corporate 1.jpg";
 import csrImg from "../assets/BS CSR.jpg";
+import brightStage from "../assets/About Us Bright stage.jpg";
 import "./About.css";
 
 const OurWorld = () => {
@@ -22,6 +23,19 @@ const OurWorld = () => {
             ],
             image: corporateImg2,
 
+        },
+        {
+            title: "Beauty Pageants & Fashion Shows",
+            subtitle: "Where elegance meets excellence.",
+            desc: "",
+            points: [
+                "Corporate Events & Brand Launches — Strategic, engaging, unforgettable.",
+                "Celebrity & Entertainment Acts — Star power that amplifies every stage.",
+                "Weddings & Celebrations — Crafted with class, emotion, and detail.",
+                "Private Parties & Family Galas — Intimate, stylish, and memorable.",
+                "Cultural & CSR Events — Celebrating heritage. Inspiring change.",
+            ],
+            image: brightStage,
         },
         {
             title: "Talent & Entertainment",

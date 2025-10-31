@@ -269,7 +269,26 @@ const Form = () => {
           </div>
         </div>
       )}
-      <div className="container mx-auto px-4 max-w-5xl mt-20">
+      {/* Top info section above the form */}
+      <div className="container mx-auto px-4 max-w-5xl mt-10">
+        <div className="bg-white rounded-xl p-8 shadow-lg border border-oldGold-500/30">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-semibold tracking-tight text-[#d6ac45]">
+              Femina
+            </h2>
+            <div className="mt-4">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+                With an illustrious legacy of over 60 years, Femina Miss India has been the crown jewel of India’s pageant heritage — a symbol of beauty, intellect, and empowerment.
+              </p>
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed mt-4">
+                Bright Stage takes immense pride in being the official licensee for Femina Miss India – Madhya Pradesh, curating an experience where luxury meets legacy and every participant shines with confidence, elegance, and purpose.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 max-w-5xl mt-10">
         <div className="bg-white rounded-lg p-6 shadow-lg border border-oldGold-500/30">
           <h1 className="text-4xl font-bold text-center mb-6 text-[#d6ac45] font-display">
             FEMINA MISS INDIA MP-2025

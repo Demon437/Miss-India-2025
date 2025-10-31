@@ -22,6 +22,7 @@ const Home = () => {
   const handleScrollToSection = (title) => {
     const map = {
       "Destination Weddings": "Weddings & Celebrations",
+      "Beauty Pageants & Fashion Shows": "Beauty Pageants & Fashion Shows",
       "Corporate Events": "Corporate Excellence",
       "Concerts & Shows": "Talent & Entertainment",
       "MICE Events": "Government & Cultural Grandeur",
@@ -59,6 +60,17 @@ const Home = () => {
   };
 
   const handleNavigateSection = (sectionId) => {
+    if (sectionId === 'form') {
+      // Open the external GotoForm view (not the internal Form component)
+      setShowForm(false);
+      setShowMainContent(false);
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        // no-op
+      }
+      return;
+    }
     setShowMainContent(true);
     setShowForm(false);
     setPendingSection(sectionId);
@@ -100,10 +112,6 @@ const Home = () => {
         <>
           <div id="home" className="mt-10">
             < Hero onDiscoverMore={() => handleNavigateSection('ourworld')} />
-          </div>
-
-          <div id='femina'>
-            <Ribbon />
           </div>
 
           <div id='services'>
