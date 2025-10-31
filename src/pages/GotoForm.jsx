@@ -30,9 +30,9 @@ const GotoForm = ({ onFormClick }) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center">
+        <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center mt-20">
 
-	  <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigation} /> 
+            <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigation} />
 
             {/* Existing Form Content */}
             <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-6">
