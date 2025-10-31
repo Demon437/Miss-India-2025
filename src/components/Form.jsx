@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import qrImage from '../assets/Screenshot 2025-10-23 173612.png';
 import closeUpRef from '../assets/Close-Up.jpg';
 import midLengthRef from '../assets/Mid-length.jpg';
 import fullLengthRef from '../assets/Full-length.jpg';
 import './Form.css'; // <-- added stylesheet import
+import Header from "../components/Header";
 
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
     <div className="mb-6">
+      
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -259,8 +262,23 @@ const Form = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleNavigateSection = (sectionId) => {
+    if (sectionId === 'form') {
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+      return;
+    }
+    navigate('/', { state: { section: sectionId } });
+  };
+
+  const handleLogoClick = () => {
+    navigate('/', { state: { section: 'home' } });
+  };
+
   return (
     <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
+      <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigateSection} />
       {/* Toast / transient messages */}
       {(successMessage || errorMessage) && (
         <div className="fixed top-6 right-6 z-50">

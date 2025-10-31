@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import logo from "../assets/logo.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Home from "./Home";
-
+import Header from "../components/Header";
 
 
 
@@ -22,6 +22,9 @@ const GotoForm = ({ onFormClick }) => {
     const handleNavigation = (section) => {
         navigate('/', { state: { section } });
     };
+    const handleLogoClick = () => {
+        navigate('/', { state: { section: 'home' } });
+    };
     const HandelSignIn = () => {
         navigate("/Form");
     };
@@ -29,7 +32,7 @@ const GotoForm = ({ onFormClick }) => {
     return (
         <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center">
 
-
+	  <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigation} /> 
 
             {/* Existing Form Content */}
             <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-6">

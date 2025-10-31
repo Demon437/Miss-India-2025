@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import HeroBanner from '../components/HeroBanner';
 import About from './About';
@@ -48,6 +49,8 @@ const Home = () => {
   const [showMainContent, setShowMainContent] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [pendingSection, setPendingSection] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
     setShowMainContent(true);
@@ -88,10 +91,27 @@ const Home = () => {
     }
   }, [showMainContent, pendingSection]);
 
+  // Handle navigation from other routes/components via router state
+  React.useEffect(() => {
+    const sectionFromState = location.state && (location.state.section || location.state.scrollTo);
+    if (sectionFromState) {
+      if (sectionFromState === 'form') {
+        setShowForm(true);
+        setShowMainContent(false);
+      } else {
+        setShowMainContent(true);
+        setShowForm(false);
+        setPendingSection(sectionFromState);
+      }
+      // clean up state so back/forward doesn't retrigger
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-ecruWhite-500 via-oldGold-200 to-ecruWhite-500 text-celtic-500">
       {/* Header will always be visible */}
-      <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigateSection} />
+      {/* <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigateSection} /> */}
 
       {/* Initial view - only GotoForm */}
       {!showMainContent && !showForm && (
@@ -110,8 +130,8 @@ const Home = () => {
       {/* Main content view - changed: render only About, Highlight, Partnership, Philosophy */}
       {showMainContent && (
         <>
-          <div id="home" className="mt-10">
-            < Hero onDiscoverMore={() => handleNavigateSection('ourworld')} />
+          <div id="home">
+            < Hero onDiscoverMore={() => handleNavigateSection('ourworld')} onNavigateSection={handleNavigateSection} />
           </div>
 
           <div id='services'>
