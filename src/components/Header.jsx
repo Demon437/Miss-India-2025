@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import logoImage from "../assets/WhatsApp Image 2025-10-15 at 14.51.55_3ae3ffed.jpg";
 
+const NAV_ITEMS = [
+  { name: "Home", id: "home" },
+  { name: "About Us", id: "about" },
+  { name: "Explore", id: "services" },
+  { name: "Femina", id: "femina" },
+  { name: "Contact", id: "contact" },
+];
+
 const Header = ({ onLogoClick, onNavigateSection }) => {
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
@@ -10,15 +17,26 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
     if (element) {
       const headerHeight = 64;
       const elementPosition = element.offsetTop - headerHeight;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: elementPosition, behavior: "smooth" });
     } else if (typeof onNavigateSection === "function") {
+      // give parent a chance to handle cross-route/remote navigation
       onNavigateSection(sectionId);
     }
-    setIsMoreOpen(false);
     setIsMobileOpen(false);
+  };
+
+  const handleLogo = (e) => {
+    e && e.preventDefault();
+    if (typeof onLogoClick === "function") {
+      onLogoClick();
+      return;
+    }
+    // default fallback: scroll to top of page
+    try {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      // ignore
+    }
   };
 
   return (
@@ -27,10 +45,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
         <div className="flex items-center justify-between">
           {/* 🟡 Logo */}
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              if (typeof onLogoClick === "function") onLogoClick();
-            }}
+            onClick={handleLogo}
             className="flex items-center gap-3 focus:outline-none"
             aria-label="Go to home"
           >
@@ -43,32 +58,24 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
 
           {/* 🟡 Desktop Nav Links */}
           <nav className="hidden md:flex items-center space-x-3">
-            {[
-              { name: "Home", id: "home" },
-              { name: "About Us", id: "about" },
-              { name: "Explore", id: "services" },
-              { name: "Femina", id: "femina" },
-              { name: "Contact", id: "contact" },
-            ].map((item) => (
+            {NAV_ITEMS.map((item) => (
               <button
                 key={item.name}
                 onClick={() => {
                   if (item.id === "femina") {
-                    if (typeof onNavigateSection === "function")
+                    if (typeof onNavigateSection === "function") {
                       onNavigateSection("form");
-                    setIsMoreOpen(false);
+                    } else {
+                      scrollToSection(item.id);
+                    }
                     setIsMobileOpen(false);
                   } else {
                     scrollToSection(item.id);
                   }
                 }}
-                className="
-                  relative text-black font-medium tracking-wide
-                  px-4 py-2 rounded-full text-sm uppercase
-                  transition-all duration-300
-                  hover:text-white hover:shadow-md
-                  hover:bg-gradient-to-r hover:from-[#d4af37] hover:to-[#f7e08c]
-                "
+                className={
+                  "relative text-black font-medium tracking-wide px-4 py-2 rounded-full text-sm uppercase transition-all duration-300 hover:text-white hover:shadow-md hover:bg-gradient-to-r hover:from-[#d4af37] hover:to-[#f7e08c]"
+                }
               >
                 {item.name}
               </button>
@@ -79,7 +86,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
           <button
             type="button"
             className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-black hover:text-[#d4af37] focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
-            aria-label="Open menu"
+            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileOpen}
             onClick={() => setIsMobileOpen((v) => !v)}
           >
@@ -107,11 +114,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
@@ -121,13 +124,23 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
         {isMobileOpen && (
           <div className="md:hidden mt-2 rounded-lg border border-[#d4af37]/20 bg-white shadow-lg overflow-hidden">
             <div className="flex flex-col py-2 text-black">
-              {["Home", "About", "Explore", "Femina", "Contact"].map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
+                  key={item.name}
+                  onClick={() => {
+                    if (item.id === "femina") {
+                      if (typeof onNavigateSection === "function") {
+                        onNavigateSection("form");
+                      } else {
+                        scrollToSection(item.id);
+                      }
+                    } else {
+                      scrollToSection(item.id);
+                    }
+                  }}
                   className="px-4 py-3 text-left hover:bg-[#d4af37]/20 hover:text-[#b8860b]"
                 >
-                  {item}
+                  {item.name}
                 </button>
               ))}
             </div>

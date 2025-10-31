@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import qrImage from '../assets/Screenshot 2025-10-23 173612.png';
 import closeUpRef from '../assets/Close-Up.jpg';
 import midLengthRef from '../assets/Mid-length.jpg';
@@ -9,7 +10,6 @@ import Header from './Header';
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
     <div className="mb-6">
-      <Header/>
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -56,6 +56,7 @@ const nationalityOptions = [
 ];
 
 const Form = () => {
+  const navigate = useNavigate();
   // allow multiple open sections
   const [openSections, setOpenSections] = useState([]); // array of open indexes
 
@@ -291,10 +292,19 @@ const Form = () => {
   };
 
   return (    
-    <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
+    <section id="form" className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
+      <Header
+        onNavigateSection={(sectionId) => {
+          navigate('/', { state: { section: sectionId } });
+        }}
+        onLogoClick={() => {
+          navigate('/', { state: { section: 'home' } });
+        }}
+      />
 
- <section
+<section
   className="femina-section"
+  id="femina"
   style={{
     display: "flex",
     justifyContent: "center",
