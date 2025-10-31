@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Home from "./Home";
-import Header from "../components/Header";
-
+import SignInModal from "./SignInModal";
+import SignUpModal from "./SignUpModal";
 
 
 const GotoForm = ({ onFormClick }) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const [isSignInOpen, setIsSignInOpen] = useState(false);
+    const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
     useEffect(() => {
         if (location.state?.scrollTo) {
@@ -19,20 +21,16 @@ const GotoForm = ({ onFormClick }) => {
         }
     }, [location]);
 
-    const handleNavigation = (section) => {
-        navigate('/', { state: { section } });
-    };
-    const handleLogoClick = () => {
-        navigate('/', { state: { section: 'home' } });
-    };
-    const HandelSignIn = () => {
-        navigate("/Form");
-    };
+    // optional navigation helper (not used here)
+const HandelSignIn = () => {
+    // Open the Sign In modal instead of navigating to a separate page
+    setIsSignInOpen(true);
+};
 
     return (
-        <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center mt-20">
+        <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center">
 
-            <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigation} />
+
 
             {/* Existing Form Content */}
             <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl max-w-4xl w-full p-6 md:p-10 relative mt-6">
@@ -40,8 +38,8 @@ const GotoForm = ({ onFormClick }) => {
                 {/* Top Button - show absolute on md+, stacked full-width on mobile */}
                 <div className="hidden md:block absolute md:top-48 top-6 right-6">
                     <button
-                        onClick={onFormClick}
-                        //  onClick={HandelSignIn}
+                        // onClick={onFormClick}
+                         onClick={HandelSignIn}
                         className="font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form
@@ -62,13 +60,42 @@ const GotoForm = ({ onFormClick }) => {
                     {/* Mobile CTA under logo */}
                     <div className="w-full max-w-[240px] mt-4 md:hidden mx-auto">
                         <button
-                            onClick={onFormClick}
+                            onClick={HandelSignIn}
                             className="w-full font-medium py-3 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                         >
                             Go to the form
                         </button>
                     </div>
-                </div>
+                {/* Sign In modal - opens when user clicks Go to the form */}
+                <SignInModal
+                    isOpen={isSignInOpen}
+                    onClose={() => setIsSignInOpen(false)}
+                    onSuccess={() => {
+                        // after successful sign-in, call onFormClick if provided
+                        setIsSignInOpen(false);
+                        if (onFormClick) onFormClick();
+                        else navigate('/');
+                    }}
+                    onOpenSignUp={() => {
+                        setIsSignInOpen(false);
+                        // open sign up modal instead of navigating
+                        setIsSignUpOpen(true);
+                    }}
+                />
+                <SignUpModal
+                    isOpen={isSignUpOpen}
+                    onClose={() => setIsSignUpOpen(false)}
+                    onSuccess={() => {
+                        setIsSignUpOpen(false);
+                        if (onFormClick) onFormClick();
+                        else navigate('/');
+                    }}
+                    onOpenSignIn={() => {
+                        setIsSignUpOpen(false);
+                        setIsSignInOpen(true);
+                    }}
+                />
+            </div>
 
                 {/* Title */}
                 <h2 className="text-[20px] md:text-[22px] font-semibold text-yellow-600 mb-4 md:mb-6">
@@ -129,11 +156,10 @@ const GotoForm = ({ onFormClick }) => {
                 <div className="text-left text-gray-700 text-[15px] mt-8 font-normal ">
                     Thank You!
                 </div>
-
+             
                 <div className="flex justify-end mt-6">
                     <button
-                        onClick={onFormClick}
-                        // onClick={HandelSignIn}
+                        onClick={HandelSignIn}
                         className="hidden md:inline-block font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >
                         Go to the form
@@ -146,3 +172,4 @@ const GotoForm = ({ onFormClick }) => {
 };
 
 export default GotoForm;
+

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import qrImage from '../assets/Screenshot 2025-10-23 173612.png';
 import closeUpRef from '../assets/Close-Up.jpg';
 import midLengthRef from '../assets/Mid-length.jpg';
 import fullLengthRef from '../assets/Full-length.jpg';
 import './Form.css'; // <-- added stylesheet import
-import Header from "../components/Header";
 
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
     <div className="mb-6">
-
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -95,6 +92,35 @@ const Form = () => {
     declaration: false
   });
 
+  // If user signed in with Google, prefill name/email from localStorage key 'authUser'
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('authUser');
+      if (!raw) return;
+      const u = JSON.parse(raw);
+      if (!u) return;
+
+      const displayName = (u.displayName || '').trim();
+      const email = u.email || '';
+
+      if (displayName || email) {
+        const parts = displayName ? displayName.split(/\s+/) : [];
+        const first = parts.length > 0 ? parts[0] : '';
+        const last = parts.length > 1 ? parts.slice(1).join(' ') : '';
+
+        setFormData(prev => ({
+          ...prev,
+          firstName: prev.firstName || first,
+          middleName: prev.middleName || '',
+          lastName: prev.lastName || last,
+          email: prev.email || email,
+        }));
+      }
+    } catch {
+      // ignore parse/storage errors
+    }
+  }, []);
+
   // submission UI state
   const [submitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -176,14 +202,14 @@ const Form = () => {
 
       // contact
       if (formData.mobile) payload.append('mobile_no', formData.mobile);
-      if (formData.alternateMobile) payload.append('alternate_mobile', formData.alternateMobile);
-      if (formData.email) payload.append('email', formData.email);
+  if (formData.alternateMobile) payload.append('alternate_mobile', formData.alternateMobile);
+  if (formData.email) payload.append('email', formData.email);
 
-      // other fields (convert to snake_case expected by API)
-      if (formData.nationality) payload.append('nationality', formData.nationality);
-      if (formData.instagram) payload.append('instagram_profile', formData.instagram);
+  // other fields (convert to snake_case expected by API)
+  if (formData.nationality) payload.append('nationality', formData.nationality);
+  if (formData.instagram) payload.append('instagram_profile', formData.instagram);
 
-      if (formData.birthState) payload.append('birth_state', formData.birthState);
+  if (formData.birthState) payload.append('birth_state', formData.birthState);
       if (formData.birthStatePreference) payload.append('birth_state_preference', formData.birthStatePreference);
       if (formData.currentState) payload.append('current_state', formData.currentState);
       if (formData.currentStatePreference) payload.append('current_state_preference', formData.currentStatePreference);
@@ -262,23 +288,65 @@ const Form = () => {
     }
   };
 
-  const navigate = useNavigate();
-
-  const handleNavigateSection = (sectionId) => {
-    if (sectionId === 'form') {
-      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { }
-      return;
-    }
-    navigate('/', { state: { section: sectionId } });
-  };
-
-  const handleLogoClick = () => {
-    navigate('/', { state: { section: 'home' } });
-  };
-
   return (
+
+    
     <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
-      <Header onLogoClick={handleLogoClick} onNavigateSection={handleNavigateSection} />
+
+ <section
+  className="femina-section"
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "0px 20px 40px 20px", // 👈 less top padding
+  }}
+>
+  <div
+    className="femina-card"
+    style={{
+      backgroundColor: "#fff",
+      borderRadius: "16px",
+      padding: "40px 25px",
+      maxWidth: "900px",
+      boxShadow: "0 4px 25px rgba(0, 0, 0, 0.1)",
+      textAlign: "center",
+
+      
+    }}
+  >
+    <h2
+      style={{
+        color: "#d4af37",
+        fontSize: "1.8rem",
+        fontWeight: "600",
+        marginBottom: "20px",
+      }}
+    >
+      Femina
+    </h2>
+
+    <p
+      style={{
+        color: "#333",
+        fontSize: "1.05rem",
+        lineHeight: "1.7",
+        marginBottom: "0",
+      }}
+    >
+      With an illustrious legacy of over 60 years, <strong>Femina Miss India</strong> has
+      been the crown jewel of India’s pageant heritage a symbol of beauty, intellect,
+      and empowerment.
+      <br />
+      <br />
+      <strong>Bright Stage</strong> takes immense pride in being the official licensee
+      for <strong>Femina Miss India – Madhya Pradesh</strong>, curating an experience
+      where luxury meets legacy and every participant shines with confidence, elegance,
+      and purpose.
+    </p>
+  </div>
+</section>
+
       {/* Toast / transient messages */}
       {(successMessage || errorMessage) && (
         <div className="fixed top-6 right-6 z-50">
@@ -287,26 +355,7 @@ const Form = () => {
           </div>
         </div>
       )}
-      {/* Top info section above the form */}
-      <div className="container mx-auto px-4 max-w-5xl mt-20">
-        <div className="bg-white rounded-xl p-8 shadow-lg border border-oldGold-500/30">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-semibold tracking-tight text-[#d6ac45]">
-              Femina
-            </h2>
-            <div className="mt-4">
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-                With an illustrious legacy of over 60 years, Femina Miss India has been the crown jewel of India’s pageant heritage — a symbol of beauty, intellect, and empowerment.
-              </p>
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed mt-4">
-                Bright Stage takes immense pride in being the official licensee for Femina Miss India – Madhya Pradesh, curating an experience where luxury meets legacy and every participant shines with confidence, elegance, and purpose.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 max-w-5xl mt-10">
+      <div className="container mx-auto px-4 max-w-5xl">
         <div className="bg-white rounded-lg p-6 shadow-lg border border-oldGold-500/30">
           <h1 className="text-4xl font-bold text-center mb-6 text-[#d6ac45] font-display">
             FEMINA MISS INDIA MP-2025
@@ -360,7 +409,7 @@ const Form = () => {
                   <button
                     type="button"
                     onClick={() => handleContinue(2)}
-                    className="text-pink-600 font-semibold"
+                    className="text-[#d6ac45] font-semibold"
                   >
                     Continue &gt;
                   </button>
@@ -412,7 +461,7 @@ const Form = () => {
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm mt-6">
-                      <span className="text-red-500"></span>
+                       <span className="text-red-500"></span>
                     </label>
                     <input
                       type="text"
@@ -557,7 +606,7 @@ const Form = () => {
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
-                      placeholder='Email'
+                    placeholder='Email'
                       type="email"
                       name="email"
                       value={formData.email}
@@ -601,7 +650,7 @@ const Form = () => {
                   <button
                     type="button"
                     onClick={() => handleContinue(3)}
-                    className="text-pink-600 font-semibold"
+                    className="text-[#d6ac45] font-semibold"
                   >
                     Continue &gt;
                   </button>
@@ -673,7 +722,7 @@ const Form = () => {
                       <option value="Lakshadweep">Lakshadweep</option>
                       <option value="Puducherry">Puducherry</option>
                       <option value="Other">Other</option>
-
+                  
                     </select>
 
                     <div className="mt-3 flex items-center gap-4">
@@ -703,9 +752,9 @@ const Form = () => {
                       value={formData.currentState}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm"
+                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20 text-sm" 
                     >
-                      <option value="">Current State / UT</option>
+                     <option value="">Current State / UT</option>
                       <option value="Andhra Pradesh">Andhra Pradesh</option>
                       <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                       <option value="Assam">Assam</option>
@@ -837,13 +886,13 @@ const Form = () => {
                   <button
                     type="button"
                     onClick={() => handleContinue(4)}
-                    className="text-pink-600 font-semibold"
+                    className="text-[#d6ac45] font-semibold"
                   >
                     Continue &gt;
                   </button>
                 </div>
               </AccordionSection>
-            </div>
+            </div>  
 
             <div id="section-4">
               <AccordionSection
@@ -938,18 +987,7 @@ const Form = () => {
                     </div>
                   </div>
 
-                  {/* <div>
-                    <label className="block text-celtic-500 font-semibold mb-1 text-sm">
-                      Natural Beauty Shot (No make-up)
-                    </label>
-                    <input
-                      type="file"
-                      name="naturalBeautyPhoto"
-                      onChange={handleInputChange}
-                      accept=".jpg,.jpeg,.png"
-                      className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
-                    />
-                  </div> */}
+               
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">How did you hear about us?</label>
