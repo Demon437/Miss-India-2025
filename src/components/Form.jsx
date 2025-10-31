@@ -288,7 +288,7 @@ const Form = () => {
         </div>
       )}
       {/* Top info section above the form */}
-      <div className="container mx-auto px-4 max-w-5xl mt-10">
+      <div className="container mx-auto px-4 max-w-5xl mt-20">
         <div className="bg-white rounded-xl p-8 shadow-lg border border-oldGold-500/30">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold tracking-tight text-[#d6ac45]">
