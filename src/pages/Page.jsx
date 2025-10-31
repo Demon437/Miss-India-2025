@@ -54,8 +54,8 @@ export default function Page() {
 
     const handleContactSubmit = (e) => {
         e.preventDefault();
-        // placeholder behavior — wire to backend/CMS later
-        alert(`Thanks, ${contactForm.name || "there"} — we'll get back to ${contactForm.email || "you"}.`);
+        // placeholder behavior wire to backend/CMS later
+        alert(`Thanks, ${contactForm.name || "there"} we'll get back to ${contactForm.email || "you"}.`);
         setContactForm({ name: "", email: "", message: "" });
     };
 
@@ -145,7 +145,7 @@ export default function Page() {
             <main id="main" style={styles.main}>
                 <section ref={refs.home} id="home" style={styles.hero}>
                     <div style={styles.heroInner}>
-                        <h1 style={styles.title}>BrightStage — Crafted Events, Classy Celebrations</h1>
+                        <h1 style={styles.title}>BrightStage Crafted Events, Classy Celebrations</h1>
                         <p style={styles.lead}>
                             Timeless memories, premium experiences. Scroll to explore our services and work.
                         </p>
@@ -192,7 +192,7 @@ export default function Page() {
                                     src={`https://via.placeholder.com/400x300?text=Event+${i}`}
                                     style={styles.cardImg}
                                 />
-                                <figcaption style={styles.cardCaption}>Event {i} — short note</figcaption>
+                                <figcaption style={styles.cardCaption}>Event {i} short note</figcaption>
                             </figure>
                         ))}
                     </div>
@@ -277,7 +277,7 @@ export default function Page() {
             </main>
 
             <footer style={styles.footer}>
-                © {new Date().getFullYear()} Bright Stage — Elegant events & timeless memories.
+                © {new Date().getFullYear()} Bright Stage Elegant events & timeless memories.
             </footer>
         </div>
     );

@@ -49,9 +49,9 @@ const Footer = ({ onNavigateSection }) => {
                     </div>
 
                     {/* Contact & Social */}
-                      <div>
+                    <div>
                         <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-                        <p className="text-gray-400 mb-2">Email: missmp@brightstage.co.in</p>
+                        <p className="text-gray-400 mb-2">Email: team@brightstage.co.in</p>
                         <p className="text-gray-400 mb-2">Phone: +91 7000939353</p>
                         <p className="text-gray-400 mb-4 leading-relaxed">
                             Address: Office Number 201, 25 F/A, Scheme No 94, Eastern Ring Road,<br />

@@ -15,7 +15,7 @@ export default function Testimonials({ videos, reviews }) {
     ];
 
     const sampleReviews = reviews && reviews.length ? reviews : [
-        { id: 1, name: "Nikhil Sharma", text: "Bright-Stage transformed our website — results exceeded expectations." },
+        { id: 1, name: "Nikhil Sharma", text: "Bright-Stage transformed our website  results exceeded expectations." },
         { id: 2, name: "Priya Rao", text: "Outstanding design and fast delivery. Highly recommended." },
         { id: 3, name: "Arjun Mehta", text: "Professional team, clear communication, excellent outcomes." }
     ];
@@ -55,7 +55,7 @@ export default function Testimonials({ videos, reviews }) {
                     </div>
 
                     <p style={{ margin: 0, color: "#444" }}>
-                        Short video testimonials from happy clients — authentic, concise, and powerful. Use /public/videos/your-file.mp4 or import files.
+                        Short video testimonials from happy clients authentic, concise, and powerful. Use /public/videos/your-file.mp4 or import files.
                     </p>
                 </div>
 

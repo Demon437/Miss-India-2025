@@ -39,7 +39,7 @@ const Partnership = () => {
             Our Promise
           </h4>
           <p className="text-xl text-dark-700 italic leading-relaxed group-hover:text-dark-800 transition-colors duration-300">
-            "Partnering with Bright Stage means your brand won't just be seen — it will be celebrated. Together, let's create events that amplify visibility, engage audiences, and leave a lasting brand impression."
+            "Partnering with Bright Stage means your brand won't just be seen  it will be celebrated. Together, let's create events that amplify visibility, engage audiences, and leave a lasting brand impression."
           </p>
         </div>
       </div>

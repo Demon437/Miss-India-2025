@@ -16,7 +16,7 @@ function defaultData() {
             { id: "m2", type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4", title: "Event 2 (video)", date: "2025-09-20" },
         ],
         announcements: [
-            { id: "a1", text: "Welcome to the Gallery — check latest events!", date: "2025-10-10" },
+            { id: "a1", text: "Welcome to the Gallery  check latest events!", date: "2025-10-10" },
         ],
     };
 }
@@ -116,7 +116,7 @@ export default function Gallery({ isAdmin = true }) {
         >
             {/* Update button styles */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-                <h2 style={{ color: '#000000' }}>Gallery — Latest Events</h2>
+                <h2 style={{ color: '#000000' }}>Gallery Latest Events</h2>
                 {isAdmin && (
                     <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                         <button

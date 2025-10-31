@@ -16,7 +16,7 @@ const cards = [
     title: "Destination Weddings",
     img: destWedding,
     alt: "Destination wedding",
-    desc: "Bespoke celebrations at dream locations — every moment crafted to perfection.",
+    desc: "Bespoke celebrations at dream locations  every moment crafted to perfection.",
   },
   {
     title: "Corporate Events",
@@ -28,7 +28,7 @@ const cards = [
     title: "Concerts & Shows",
     img: talent1,
     alt: "Concert or show",
-    desc: "High-energy productions with seamless production and crowd experiences.",
+    desc: "High energy productions with seamless production and crowd experiences.",
   },
   {
     title: "MICE Events",
@@ -77,7 +77,7 @@ const LazyImage = ({ src, alt, style }) => {
   );
 };
 
-const Card = ({ title, img, alt, desc, index }) => {
+const Card = ({ title, img, alt, desc, index, onCardClick }) => {
   const rotateX = useSpring(0, springConfig);
   const rotateY = useSpring(0, springConfig);
   const scale = useSpring(1, springConfig);
@@ -105,6 +105,7 @@ const Card = ({ title, img, alt, desc, index }) => {
 
   return (
     <motion.article
+     onClick={() => onCardClick(title)}
       role="listitem"
       tabIndex="0"
       initial={{ opacity: 0, y: 50 }}
@@ -119,7 +120,7 @@ const Card = ({ title, img, alt, desc, index }) => {
         gap: "0.75rem",
         padding: "1.25rem",
         borderRadius: 12,
-        background: "#f8f8f8",
+  background: "linear-gradient(135deg, #fffef8, #fdf6e6)",
         boxShadow:
           "0 6px 18px rgba(15,15,15,0.08), 0 2px 6px rgba(15,15,15,0.04)",
         height: "100%",
@@ -172,14 +173,14 @@ const Card = ({ title, img, alt, desc, index }) => {
   );
 };
 
-export default function Highlight() {
+export default function Highlight({ onCardSelect } ) {
   return (
     <section
       aria-labelledby="highlight-heading"
       style={{
         padding: "3rem 1rem",
         background: "#d6ac45",
-        
+
       }}
     >
       <motion.div
@@ -189,14 +190,14 @@ export default function Highlight() {
         viewport={{ once: false }}
         style={{ maxWidth: 1200, margin: "0 auto" }}
       >
-        <h2
+        <h2 className="section-heading"
           id="Services"
           style={{
-            fontSize: "1.5rem",
+            fontSize: "2.0rem",
             margin: "0 0 1rem 0",
             textAlign: "center",
             color: "#111",
-            fontWeight: "600",
+            fontWeight: "700",
           }}
         >
           Our Expertise
@@ -212,7 +213,7 @@ export default function Highlight() {
             marginRight: "auto",
           }}
         >
-          We craft memorable experiences across a variety of event types — below are a few areas we
+          We craft memorable experiences across a variety of event types  below are a few areas we
           specialise in.
         </p>
 
@@ -227,7 +228,7 @@ export default function Highlight() {
           }}
         >
           {cards.map((c, index) => (
-            <Card key={c.title} {...c} index={index} />
+            <Card key={c.title} {...c} index={index}  onCardClick={onCardSelect}/>
           ))}
         </div>
       </motion.div>

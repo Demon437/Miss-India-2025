@@ -17,12 +17,12 @@
 }
 
 .stats-section {
-    background: linear-gradient(to right, #1a1a1a, #333);
+    background:#1b3521;
     padding: 6rem 2rem;
     position: relative;
     overflow: hidden;
 }
-
+    
 .stats-section::before {
     content: '';
     position: absolute;
@@ -185,5 +185,51 @@
     }
 }
 
+.section-heading {
+  font-family: "Spectral", serif;
+  font-weight: 600; /* you can try 500 / 700 also */
+  letter-spacing: 0.5px;
+}
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  flex-wrap: wrap;
+}
 
+/* Glass + Soft Gradient Cards */
+.info-card {
+  background: linear-gradient(135deg, #fffef8, #fdf6e6);
+  border-radius: 18px;
+  padding: 2rem 2rem;
+  width: 500px;
+  text-align: center;
+  border: 1px solid rgba(255, 215, 135, 0.6);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
 
+/* Titles */
+.info-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #3a2e14;
+  letter-spacing: 0.8px;
+}
+
+/* Text */
+.info-card p {
+  font-size: 1.05rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+/* Hover Glow */
+.info-card:hover {
+  box-shadow: 0 12px 45px rgba(255, 200, 120, 0.4);
+}

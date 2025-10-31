@@ -24,7 +24,7 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white from-ecruWhite-500 via-oldGold-300 to-ecruWhite-500 backdrop-blur-md bg-opacity-95 shadow-lg border-b border-oldGold-500/20">
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-4 py-1">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
@@ -40,41 +40,37 @@ const Header = ({ onLogoClick, onNavigateSection }) => {
               <img
                 src={logoImage}
                 alt="BRIGHT STAGE Logo"
-                className="h-12 w-auto object-contain cursor-pointer"
+                className="h-16 w-auto object-contain cursor-pointer"
               />
             </button>
           </div>
 
           {/* Navigation Links - Desktop */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection('home')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
-            >
-              Home
-            </button>
-           
-            <button
-              onClick={() => scrollToSection('services')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
-            >
-              Expertise
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-celtic-500 hover:text-oldGold-500 transition-colors duration-300 font-medium px-3 py-1 rounded-lg hover:bg-oldGold-500/10"
-            >
-              Contact
-            </button>
+         <nav className="hidden md:flex items-center space-x-2">
+  {[
+    { name: "Home", id: "home" },
+        { name: "About Us", id: "about" },
+    { name: "Explore", id: "services" },
+    { name: "Femina", id: "femina" },
+    { name: "Contact", id: "contact" },
+  ].map((item) => (
+    <button
+      key={item.name}
+      onClick={() => scrollToSection(item.id)}
+      className="
+        relative text-dark font-medium tracking-wide
+        px-3 py-1.5 rounded-full text-sm uppercase
+        transition-all duration-300
+        hover:text-white hover:shadow-md
+        hover:bg-gradient-to-r hover:from-[#d4af37] hover:to-[#b8860b]
+        cursor-pointer
+      "
+    >
+      {item.name}
+    </button>
+  ))}
+</nav>
 
-        
-          </nav>
 
           {/* Mobile Hamburger Button */}
           <button

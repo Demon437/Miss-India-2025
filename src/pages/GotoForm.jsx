@@ -22,9 +22,9 @@ const GotoForm = ({ onFormClick }) => {
     const handleNavigation = (section) => {
         navigate('/', { state: { section } });
     };
-const HandelSignIn = () => {
-    navigate("/Form");
-};
+    const HandelSignIn = () => {
+        navigate("/Form");
+    };
 
     return (
         <div className="min-h-screen bg-[#fdfdfd] flex flex-col items-center">
@@ -118,7 +118,7 @@ const HandelSignIn = () => {
                         </span>{" "}
                         or kindly write to us on{" "}
                         <span className="text-dark">
-                            missmp@brightstage.co.in
+                            team@brightstage.co.in
                         </span>
                     </p>
                 </div>
@@ -126,10 +126,10 @@ const HandelSignIn = () => {
                 <div className="text-left text-gray-700 text-[15px] mt-8 font-normal ">
                     Thank You!
                 </div>
-             
+
                 <div className="flex justify-end mt-6">
                     <button
-                     onClick={onFormClick}
+                        onClick={onFormClick}
                         // onClick={HandelSignIn}
                         className="hidden md:inline-block font-medium py-3 px-4 rounded-full text-md transition-colors duration-300 bg-yellow-600 hover:bg-yellow-700 text-white shadow-md"
                     >

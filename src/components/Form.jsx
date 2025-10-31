@@ -901,7 +901,7 @@ const Form = () => {
                     </div>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">
                       Natural Beauty Shot (No make-up)
                     </label>
@@ -912,7 +912,7 @@ const Form = () => {
                       accept=".jpg,.jpeg,.png"
                       className="w-full p-2 bg-white border border-gray-300 rounded text-celtic-500 focus:border-oldGold-500 focus:outline-none focus:ring-1 focus:ring-oldGold-500/20"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label className="block text-celtic-500 font-semibold mb-1 text-sm">How did you hear about us?</label>

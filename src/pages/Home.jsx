@@ -14,10 +14,36 @@ import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 
 import OurWorld from '../components/OurWorld';
-
+import Ribbon from '../components/Ribbon';
 
 
 const Home = () => {
+
+  const handleScrollToSection = (title) => {
+    const map = {
+      "Destination Weddings": "Weddings & Celebrations",
+      "Corporate Events": "Corporate Excellence",
+      "Concerts & Shows": "Talent & Entertainment",
+      "MICE Events": "Government & Cultural Grandeur",
+    };
+
+    const targetTitle = map[title];
+    if (!targetTitle) return;
+
+    const id = targetTitle.replace(/\s+/g, "-").toLowerCase();
+    const section = document.getElementById(id);
+
+    if (section) {
+      const headerHeight = 150; // ← iss number ko apne header ke height ke hisaab se change kar sakte ho
+      const sectionPosition = section.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({
+        top: sectionPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const [showMainContent, setShowMainContent] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [pendingSection, setPendingSection] = useState(null);
@@ -76,9 +102,12 @@ const Home = () => {
             < Hero onDiscoverMore={() => handleNavigateSection('ourworld')} />
           </div>
 
+          <div id='femina'>
+            <Ribbon />
+          </div>
 
           <div id='services'>
-            <Highlight />
+            <Highlight onCardSelect={handleScrollToSection} />
           </div>
 
           <div id='about'>

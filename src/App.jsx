@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SingUp";
 
+
 function App() {
   return (
     <Router>
