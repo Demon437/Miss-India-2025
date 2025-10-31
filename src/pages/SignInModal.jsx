@@ -106,11 +106,11 @@ const SignInModal = ({ isOpen, onClose, onSuccess, onOpenSignUp }) => {
                     </button>
                     <p style={{ marginTop: 12, fontSize: 14, color: '#d6ac45' }}>........ or go the traditional way ........</p>
                 </div>
-
+{/* 
                 <div style={{ textAlign: 'left', marginBottom: 18 }}>
                     <label style={{ display: 'block', fontWeight: 700, marginBottom: 8, fontSize: 15, color: '#f2f1da' }}>Email ID / Phone Number</label>
                     <input type="text" placeholder="Enter email or phone to sign up/ sign in" style={{ width: '100%', padding: 10, border: 'none', borderBottom: '1px solid rgba(214,172,69,0.7)', background: 'transparent', color: '#f2f1da', outline: 'none', fontSize: 14 }} />
-                </div>
+                </div> */}
 
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
                     <input type="checkbox" checked={termsChecked} onChange={() => setTermsChecked(!termsChecked)} style={{ width: 20, height: 20, accentColor: '#d6ac45' }} />
@@ -123,9 +123,7 @@ const SignInModal = ({ isOpen, onClose, onSuccess, onOpenSignUp }) => {
 
                 {errorMessage && <p style={{ color: '#81490f', marginTop: 12, fontWeight: 700 }}>{errorMessage}</p>}
 
-                <div style={{ marginTop: 14, textAlign: 'center' }}>
-                    <button onClick={() => onOpenSignUp ? onOpenSignUp() : null} style={{ background: 'transparent', border: 'none', color: '#d6ac45', textDecoration: 'underline', cursor: 'pointer', fontWeight: 600 }}>Sign Up</button>
-                </div>
+
             </div>
         </div>
     );

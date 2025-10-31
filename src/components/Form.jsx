@@ -4,10 +4,12 @@ import closeUpRef from '../assets/Close-Up.jpg';
 import midLengthRef from '../assets/Mid-length.jpg';
 import fullLengthRef from '../assets/Full-length.jpg';
 import './Form.css'; // <-- added stylesheet import
+import Header from './Header';
 
 const AccordionSection = ({ index, title, isOpen, onToggle, children }) => {
   return (
     <div className="mb-6">
+      <Header/>
       <label className="flex items-center cursor-pointer">
         {/* Remove the radio input as it's not needed for toggle functionality */}
         <div
@@ -288,9 +290,7 @@ const Form = () => {
     }
   };
 
-  return (
-
-    
+  return (    
     <section className="form-root py-8 bg-[#1b3521] text-ecruWhite-500">
 
  <section
@@ -300,6 +300,7 @@ const Form = () => {
     justifyContent: "center",
     alignItems: "center",
     padding: "0px 20px 40px 20px", // 👈 less top padding
+    marginTop:"70px"
   }}
 >
   <div
