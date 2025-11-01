@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import qrImage from '../assets/Screenshot 2025-10-23 173612.png';
+import qrImage from '../assets/WhatsApp Image 2025-11-01 at 09.51.27_7305dc02.jpg';
 import closeUpRef from '../assets/Close-Up.jpg';
 import midLengthRef from '../assets/Mid-length.jpg';
 import fullLengthRef from '../assets/Full-length.jpg';
