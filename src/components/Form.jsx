@@ -1022,17 +1022,23 @@ const Form = () => {
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
-                <div>
-                  <h4 className="text-lg font-bold text-celtic-500 mb-3">Registration Fee: ₹999</h4>
-                  <div className="bg-white p-4 rounded-lg border border-gray-300 text-center">
-                    <div className="w-48 h-48 mx-auto bg-gray-100 rounded-lg flex items-center justify-center mb-2">
-                      <a href={qrImage} target="_blank" rel="noopener noreferrer">
-                        <img src={qrImage} alt="Payment QR" className="w-48 h-48 object-contain rounded-lg" />
-                      </a>
-                    </div>
-                    <p className="text-sm text-gray-600">Scan QR code to make payment</p>
-                  </div>
-                </div>
+             <div>
+  <h4 className="text-lg text-celtic-500 mb-3">
+    <span className="font-bold text-black">(Refundable)</span> Registration Fee: ₹999
+  </h4>
+  <div className="bg-white p-4 rounded-lg border border-gray-300 text-center">
+    <div className="w-48 h-48 mx-auto bg-gray-100 rounded-lg flex items-center justify-center mb-2">
+      <a href={qrImage} target="_blank" rel="noopener noreferrer">
+        <img
+          src={qrImage}
+          alt="Payment QR"
+          className="w-48 h-48 object-contain rounded-lg"
+        />
+      </a>
+    </div>
+    <p className="text-sm text-gray-600">Scan QR code to make payment</p>
+  </div>
+</div>
 
                 <div>
                   <div className="mb-4">
